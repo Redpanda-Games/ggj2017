@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var app = {
+var App = {
     game: null,
     // Application Constructor
     initialize: function() {
@@ -29,14 +29,14 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+        App.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
     receivedEvent: function(event) {
-        var parentElement = null;
+        var game = null;
         if(event === 'deviceready') {
-            parentElement = document.getElementById('gameStage');
-            app.game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, parentElement);
+            DependencyLoader.insertScripts(GlobalConfig.javaScriptDependencies);
+            game = GameObjectGenerator.generateByEngineName(GlobalConfig.gameEngineName, GlobalConfig.rootElementId);
             console.log('new event', event);
         }
     }

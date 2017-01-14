@@ -16,47 +16,45 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-describe('app', function() {
+describe('App', function() {
     describe('initialize', function() {
         it('should bind deviceready', function() {
             runs(function() {
-                spyOn(app, 'onDeviceReady');
-                app.initialize();
+                spyOn(App, 'onDeviceReady');
+                App.initialize();
                 helper.trigger(window.document, 'deviceready');
             });
 
             waitsFor(function() {
-                return (app.onDeviceReady.calls.length > 0);
+                return (App.onDeviceReady.calls.length > 0);
             }, 'onDeviceReady should be called once', 500);
 
             runs(function() {
-                expect(app.onDeviceReady).toHaveBeenCalled();
+                expect(App.onDeviceReady).toHaveBeenCalled();
             });
         });
     });
 
     describe('onDeviceReady', function() {
         it('should report that it fired', function() {
-            spyOn(app, 'receivedEvent');
-            app.onDeviceReady();
-            expect(app.receivedEvent).toHaveBeenCalledWith('deviceready');
+            spyOn(App, 'receivedEvent');
+            App.onDeviceReady();
+            expect(App.receivedEvent).toHaveBeenCalledWith('deviceready');
         });
     });
 
     describe('receivedEvent', function() {
-        beforeEach(function() {
-            var el = document.getElementById('stage');
-            el.innerHTML = ['<div id="gameStage">',
-                            '</div>'].join('\n');
-        });
-        it('should generate the app.game object on "deviceready" event', function() {
-            app.receivedEvent('deviceready');
-            expect(app.game).not.toBe(null);
-        });
-        it('should add canvas to gameStage', function() {
-            app.receivedEvent('deviceready');
-            var gameCanvas = document.getElementById('stage').getElementsByTagName('canvas');
-            expect(gameCanvas).not.toBe(null);
+        describe('on called with deviceready', function() {
+            it('should call DependencyLoader.insertScripts with GlobalConfig.javaScriptDependencies', function() {
+                spyOn(DependencyLoader, 'insertScripts');
+                App.receivedEvent('deviceready');
+                expect(DependencyLoader.insertScripts).toHaveBeenCalledWith(GlobalConfig.javaScriptDependencies);
+            });
+            it('should call GameObjectGenerator.generateByEngineName with GlobalConfig.gameEngineName and GlobalConfig.rootElementId',function() {
+                spyOn(GameObjectGenerator, 'generateByEngineName');
+                App.receivedEvent('deviceready');
+                expect(GameObjectGenerator.generateByEngineName).toHaveBeenCalledWith(GlobalConfig.gameEngineName, GlobalConfig.rootElementId);
+            });
         });
     });
 });
