@@ -46,22 +46,17 @@ describe('app', function() {
     describe('receivedEvent', function() {
         beforeEach(function() {
             var el = document.getElementById('stage');
-            el.innerHTML = ['<div id="deviceready">',
-                            '    <p class="event listening">Listening</p>',
-                            '    <p class="event received">Received</p>',
+            el.innerHTML = ['<div id="gameStage">',
                             '</div>'].join('\n');
         });
-
-        it('should hide the listening element', function() {
+        it('should generate the app.game object on "deviceready" event', function() {
             app.receivedEvent('deviceready');
-            var displayStyle = helper.getComputedStyle('#deviceready .listening', 'display');
-            expect(displayStyle).toEqual('none');
+            expect(app.game).not.toBe(null);
         });
-
-        it('should show the received element', function() {
+        it('should add canvas to gameStage', function() {
             app.receivedEvent('deviceready');
-            var displayStyle = helper.getComputedStyle('#deviceready .received', 'display');
-            expect(displayStyle).toEqual('block');
+            var gameCanvas = document.getElementById('stage').getElementsByTagName('canvas');
+            expect(gameCanvas).not.toBe(null);
         });
     });
 });
