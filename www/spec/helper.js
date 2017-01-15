@@ -21,6 +21,7 @@ afterEach(function() {
 });
 
 var helper = {
+    testcallback: function() {},
     trigger: function(obj, name) {
         var e = document.createEvent('Event');
         e.initEvent(name, true, true);

@@ -48,7 +48,7 @@ describe('App', function() {
             it('should call DependencyLoader.insertScripts with GlobalConfig.javaScriptDependencies', function() {
                 spyOn(DependencyLoader, 'insertScripts');
                 App.receivedEvent('deviceready');
-                expect(DependencyLoader.insertScripts).toHaveBeenCalledWith(GlobalConfig.javaScriptDependencies);
+                expect(DependencyLoader.insertScripts.mostRecentCall.args[0]).toEqual(GlobalConfig.javaScriptDependencies);
             });
             it('should call GameObjectGenerator.generateByEngineName with GlobalConfig.gameEngineName and GlobalConfig.rootElementId',function() {
                 spyOn(GameObjectGenerator, 'generateByEngineName');

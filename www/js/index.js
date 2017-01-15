@@ -31,13 +31,17 @@ var App = {
     onDeviceReady: function() {
         App.receivedEvent('deviceready');
     },
-    // Update DOM on a Received Event
+    onDependenciesReady: function(){
+        App.receivedEvent('dependenciesready');
+    },
     receivedEvent: function(event) {
-        var game = null;
-        if(event === 'deviceready') {
-            DependencyLoader.insertScripts(GlobalConfig.javaScriptDependencies);
-            game = GameObjectGenerator.generateByEngineName(GlobalConfig.gameEngineName, GlobalConfig.rootElementId);
-            console.log('new event', event);
-        }
+        switch (event) {
+            case 'deviceready':
+                DependencyLoader.insertScripts(GlobalConfig.javaScriptDependencies, this.onDependenciesReady);
+                break;
+            case 'dependenciesready':
+                GameObjectGenerator.generateByEngineName(GlobalConfig.gameEngineName, GlobalConfig.rootElementId);
+                break;
+        };
     }
 };
