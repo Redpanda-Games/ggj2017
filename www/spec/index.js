@@ -52,7 +52,7 @@ describe('App', function() {
             });
             it('should call GameObjectGenerator.generateByEngineName with GlobalConfig.gameEngineName and GlobalConfig.rootElementId',function() {
                 spyOn(GameObjectGenerator, 'generateByEngineName');
-                App.receivedEvent('deviceready');
+                App.receivedEvent('dependenciesready');
                 expect(GameObjectGenerator.generateByEngineName).toHaveBeenCalledWith(GlobalConfig.gameEngineName, GlobalConfig.rootElementId);
             });
         });
