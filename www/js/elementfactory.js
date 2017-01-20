@@ -1,14 +1,19 @@
-ElementFactory = {
-    factorShip: function() {
+var ElementFactory = function(game) {
+    var _game = null;
+    var _init = function() {
+        _game = game;
+    };
+    this.factorShip = function() {
 
-    },
-    factorPlanet: function() {
+    };
+    this.factorPlanet = function() {
 
-    },
-    factorHealthBar: function() {
+    };
+    this.factorHealthBar = function() {
 
-    },
-    factorRadar: function() {
+    };
+    this.factorRadar = function() {
 
-    }
-}
+    };
+    _init();
+};
