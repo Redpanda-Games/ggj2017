@@ -9,7 +9,7 @@ var GlobalConfig = {
         'Credit',
         'Game',
         'Menu',
-        'Preload',
+        'Preloader',
         'ScoreScreen'
     ],
     menuConfig: {
