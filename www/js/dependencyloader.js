@@ -1,5 +1,5 @@
 var DependencyLoader = {
-    insertScripts: function(srcStringArray, callback) {
+    insertScripts: function (srcStringArray, callback) {
         var scriptReadyCounter = 0;
         if (!srcStringArray || 0 == srcStringArray.length) {
             callback && callback();
@@ -7,17 +7,19 @@ var DependencyLoader = {
         }
         for (var i in srcStringArray) {
             if (srcStringArray.hasOwnProperty(i)) {
-                DependencyLoader.insertScript(srcStringArray[i], function(){scriptReadyCounter++});
+                DependencyLoader.insertScript(srcStringArray[i], function () {
+                    scriptReadyCounter++
+                });
             }
         }
         var readyCheck = setInterval(function () {
-            if(scriptReadyCounter == srcStringArray.length){
+            if (scriptReadyCounter == srcStringArray.length) {
                 callback();
                 clearInterval(readyCheck);
             }
         }, 200);
     },
-    insertScript: function(srcString, callback) {
+    insertScript: function (srcString, callback) {
         if (!srcString) {
             callback && callback();
             return;

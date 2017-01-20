@@ -1,7 +1,7 @@
 var GameObjectGenerator = {
-    generateByEngineName : function(nameString, rootElementIdString) {
+    generateByEngineName: function (nameString, rootElementIdString) {
         var game = null;
-        if(!nameString || !rootElementIdString){
+        if (!nameString || !rootElementIdString) {
             return game;
         }
         switch (nameString) {
@@ -9,7 +9,7 @@ var GameObjectGenerator = {
                 game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, rootElementIdString);
                 break;
             default:
-                game =null;
+                game = null;
                 break;
         }
         return game;

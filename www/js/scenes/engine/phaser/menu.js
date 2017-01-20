@@ -1,3 +1,3 @@
-var Menu = function() {
+var Menu = function () {
 
 };

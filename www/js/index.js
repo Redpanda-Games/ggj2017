@@ -19,22 +19,22 @@
 var App = {
     game: null,
     // Application Constructor
-    initialize: function() {
+    initialize: function () {
         this.bindEvents();
     },
     // Bind Event Listeners
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
+    bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
-    onDeviceReady: function() {
+    onDeviceReady: function () {
         App.receivedEvent('deviceready');
     },
-    onDependenciesReady: function(){
+    onDependenciesReady: function () {
         App.receivedEvent('dependenciesready');
     },
-    receivedEvent: function(event) {
+    receivedEvent: function (event) {
         switch (event) {
             case 'deviceready':
                 DependencyLoader.insertScripts(GlobalConfig.javaScriptDependencies, this.onDependenciesReady);
@@ -43,6 +43,7 @@ var App = {
                 var newgame = new MGame(GlobalConfig);
                 newgame.start();
                 break;
-        };
+        }
+        ;
     }
 };
