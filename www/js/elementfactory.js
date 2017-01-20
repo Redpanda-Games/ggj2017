@@ -1,16 +1,19 @@
-ElementFactory = {
-    factorShip: function() {
-        var sprite = this.game.add.sprite(400, 500, 'alien_ship');
-        sprite.anchor.setTo(0.5, 0.5);
-        return sprite;
-    },
-    factorPlanet: function() {
+var ElementFactory = function(game) {
+    var _game = null;
+    var _init = function() {
+        _game = game;
+    };
+    this.factorShip = function() {
 
-    },
-    factorHealthBar: function() {
+    };
+    this.factorPlanet = function() {
 
-    },
-    factorRadar: function() {
+    };
+    this.factorHealthBar = function() {
 
-    }
-}
+    };
+    this.factorRadar = function() {
+
+    };
+    _init();
+};
