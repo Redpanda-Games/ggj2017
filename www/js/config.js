@@ -32,6 +32,7 @@ var GlobalConfig = {
     javaScriptDependencies: [
         'js/lib/phaser.js',
         'js/mgame.js',
+        'js/elementfactory.js',
         'js/phaserstarter.js',
         'js/gameobjectgenerator.js',
         'js/enginespecificstarterfactory.js',
