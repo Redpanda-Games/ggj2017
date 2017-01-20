@@ -50,10 +50,10 @@ describe('App', function() {
                 App.receivedEvent('deviceready');
                 expect(DependencyLoader.insertScripts.mostRecentCall.args[0]).toEqual(GlobalConfig.javaScriptDependencies);
             });
-            it('should call GameObjectGenerator.generateByEngineName with GlobalConfig.gameEngineName and GlobalConfig.rootElementId',function() {
-                spyOn(GameObjectGenerator, 'generateByEngineName');
+            it('should call should create a new MGame instance an call start',function() {
+                spyOn(window,'MGame').andCallThrough();
                 App.receivedEvent('dependenciesready');
-                expect(GameObjectGenerator.generateByEngineName).toHaveBeenCalledWith(GlobalConfig.gameEngineName, GlobalConfig.rootElementId);
+                expect(MGame).toHaveBeenCalled();
             });
         });
     });

@@ -40,7 +40,8 @@ var App = {
                 DependencyLoader.insertScripts(GlobalConfig.javaScriptDependencies, this.onDependenciesReady);
                 break;
             case 'dependenciesready':
-                GameObjectGenerator.generateByEngineName(GlobalConfig.gameEngineName, GlobalConfig.rootElementId);
+                var newgame = new MGame(GlobalConfig);
+                newgame.start();
                 break;
         };
     }
