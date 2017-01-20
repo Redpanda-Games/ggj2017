@@ -20,7 +20,6 @@ Preloader.prototype = {
         this.load.audio('titleMusic', ['audio/main_menu.mp3']);
         this.load.bitmapFont('caslon', 'fonts/caslon.png', 'fonts/caslon.xml');
         //    + lots of other required assets here
-
     },
     create: function () {
         //    Once the load has finished we disable the crop because we're going to sit in the update loop for a short while as the music decodes
