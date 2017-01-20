@@ -10,7 +10,6 @@ Preloader.prototype = {
         this.load.setPreloadSprite(this.preloadBar);
     },
     create: function () {
-        this.preloadBar.cropEnabled = false;
         this.state.clearCurrentState();
         this.state.start('Menu');
     }
