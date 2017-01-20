@@ -39,6 +39,7 @@ var App = {
                 DependencyLoader.insertScripts(GlobalConfig.javaScriptDependencies, this.onDependenciesReady);
                 break;
             case 'dependenciesready':
+                document.getElementsByTagName('title')[0].innerHTML = GlobalConfig.gameName;
                 var newgame = new MGame(GlobalConfig);
                 newgame.start();
                 break;
