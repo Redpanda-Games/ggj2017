@@ -6,7 +6,7 @@ var GameObjectGenerator = {
         }
         switch (nameString) {
             case 'Phaser.io':
-                game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, rootElementIdString);
+                game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, rootElementIdString);
                 break;
             default:
                 game = null;
