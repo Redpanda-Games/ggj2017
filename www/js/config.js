@@ -1,5 +1,5 @@
 var GlobalConfig = {
-    gameName: 'Give me a name',
+    gameName: 'GravGore',
     version: '0.0.1',
     gameEngineName: 'Phaser.io',
     rootElementId: 'gameStage',
