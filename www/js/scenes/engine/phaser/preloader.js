@@ -8,7 +8,9 @@ Preloader.prototype = {
         //    These are the assets we loaded in Boot.js
         //    A nice sparkly background and a loading progress bar
         this.background = this.add.sprite(0, 0, 'preloaderBackground');
-        this.preloadBar = this.add.sprite(300, 400, 'preloaderBar');
+        this.preloadBar = this.add.sprite(400, 500, 'preloaderBar');
+        //this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'preloaderBar');
+        //this.preloadBar.anchor.setTo(0.5, 0.5);
         //    This sets the preloadBar sprite as a loader sprite.
         //    What that does is automatically crop the sprite from 0 to full-width
         //    as the files below are loaded in.
@@ -19,15 +21,6 @@ Preloader.prototype = {
         //this.load.atlas('playButton', 'images/play_button.png', 'images/play_button.json');
         //this.load.audio('titleMusic', ['audio/main_menu.mp3']);
         //this.load.bitmapFont('caslon', 'fonts/caslon.png', 'fonts/caslon.xml');
-        console.log('Loading Musik begin');
-        this.load.audio('test',['img/m.mp3']);
-        this.load.audio('test1',['img/m2.mp3']);
-        this.load.audio('test2',['img/m3.mp3']);
-        this.load.audio('test3',['img/m4.mp3']);
-        this.load.audio('test4',['img/m5.mp3']);
-        this.load.audio('test5',['img/m6.mp3']);
-        this.load.audio('test6',['img/m7.mp3']);
-        console.log('Loading Musik ende')
 
         //    + lots of other required assets here
     },
