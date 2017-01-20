@@ -346,3 +346,5 @@ GitHub.sublime-settings
 # Code Recommenders
 
 # End of https://www.gitignore.io/api/eclipse,intellij,linux,node,osx,windows,sublimetext,notepadpp,webstorm,phpstorm,aptanastudio
+/plugins/
+/platforms/

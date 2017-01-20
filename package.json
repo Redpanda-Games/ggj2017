@@ -1,0 +1,10 @@
+{
+  "repository": "gummibeer/ggj2017",
+  "license": "MIT",
+  "dependencies": {
+    "phonegap": "^6.4.2"
+  },
+  "scripts": {
+    "start" : "./node_modules/.bin/phonegap serve"
+  }
+}
