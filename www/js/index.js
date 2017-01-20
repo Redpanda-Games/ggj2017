@@ -17,7 +17,6 @@
  * under the License.
  */
 var App = {
-    game: null,
     // Application Constructor
     initialize: function() {
         this.bindEvents();
