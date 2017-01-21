@@ -12,6 +12,7 @@ Preloader.prototype = {
         this.load.image('radar_ground', 'img/radar_background.png');
         this.load.image('radar_planet', 'img/radar_planet.png');
         this.load.image('radar_ship', 'img/radar_ship.png');
+        this.load.image('radar_scanner', 'img/radar_scanner.png');
         this.load.image('energybar', 'img/Energie-Bar.png');
         this.load.image('healthbar', 'img/HP-BAR.png');
         this.load.image('game_background', 'img/game_background.jpg');

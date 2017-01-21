@@ -89,6 +89,9 @@ var ElementFactory = function (game) {
         sprite.planet = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_planet');
         sprite.planet.anchor.setTo(0.5, 0.5);
         sprite.planet.scale.setTo(0.25, 0.25);
+        sprite.scanner = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_scanner');
+        sprite.scanner.anchor.setTo(0.5, 0.5);
+        sprite.scanner.scale.setTo(0.56, 0.56);
 
         var fullWidth = _game.spawnBoundaries.maxX + Math.abs(_game.spawnBoundaries.minX);
         var fullHeight = _game.spawnBoundaries.maxY + Math.abs(_game.spawnBoundaries.minY);
@@ -123,6 +126,9 @@ var ElementFactory = function (game) {
                     sprite.ships.push(shipRadar);
                 }
             }
+        };
+        sprite.updateScanner = function() {
+            this.scanner.angle += 3;
         };
         return sprite;
     };

@@ -32,10 +32,10 @@ Game.prototype = {
         this.maxEnemyCount = 1 + Math.round(timegone / 10);
         this.enemySpeed = this.baseEnemySpeed + timegone / 10;
         this.generateShipIfNeeded();
-        this.updateEnemies();
         if (this.game.input.activePointer.isDown) {
             this.fireBullet();
         }
+        this.updateEnemies();
         this.updateBullet();
         this.updateRadar();
         this.updateHealthBar();
@@ -69,6 +69,7 @@ Game.prototype = {
         }
     },
     updateRadar: function () {
+        this.radar.updateScanner();
         this.radar.updateShips(this.enemies);
     },
     updateBullet: function () {
