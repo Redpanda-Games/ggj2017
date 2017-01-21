@@ -49,8 +49,12 @@ Game.prototype = {
         this.game.physics.arcade.collide(this.enemies, this.planet);
         this.game.physics.arcade.collide(this.bullets, this.enemies);
         for (var j = 0; j < this.enemies.length; j++) {
-            this.enemies[j].moveForward(this.enemySpeed);
+          if (this.enemies[j].body !== null){this.enemies[j].moveForward(this.enemySpeed)}
+          else {
+          this.enemies.splice(j, 1);
+          console.log('Killed' + this.enemies[j]);
         }
+      }
     },
     updateHealthBar: function () {
         if (this.planet.health < 0.5) {
