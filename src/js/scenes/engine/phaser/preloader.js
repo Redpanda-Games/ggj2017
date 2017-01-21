@@ -17,7 +17,7 @@ Preloader.prototype = {
         this.load.image('healthbar', 'src/img/HP-BAR.png');
         this.load.image('game_background', 'src/img/game_background.png');
         this.load.image('menu_background', 'src/img/menu_background.jpg');
-        this.load.image('menu_start_button', 'src/img/menu_start_button.png');
+
         this.load.image('charackter', 'src/img/Char.png');
         this.load.image('planet', 'src/img/planet.png');
 
@@ -29,6 +29,7 @@ Preloader.prototype = {
 
         this.load.spritesheet('bullet_inverse', 'src/img/bullet_inverse.png', 350, 350);
         this.load.spritesheet('bullet_increase', 'src/img/bullet_increase.png', 350, 350);
+        this.load.spritesheet('menu_start_button', 'src/img/menu_start_button.png', 900, 900);
     },
     create: function () {
         this.state.clearCurrentState();
