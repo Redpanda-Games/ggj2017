@@ -9,9 +9,9 @@ Preloader.prototype = {
         this.preloadBar = this.add.sprite(400, 500, 'preloaderBar');
         this.load.setPreloadSprite(this.preloadBar);
 
-        this.load.image('radar_ground', 'img/Radar-Grund.png');
-        this.load.image('radar_planet', 'img/Radar-Erdeplanet.png');
-        this.load.image('radar_ship', 'img/Radar-Raketen.png');
+        this.load.image('radar_ground', 'img/radar_background.png');
+        this.load.image('radar_planet', 'img/radar_planet.png');
+        this.load.image('radar_ship', 'img/radar_ship.png');
         this.load.image('energybar', 'img/Energie-Bar.png');
         this.load.image('healthbar', 'img/HP-BAR.png');
         this.load.image('game_background', 'img/game_background.jpg');
