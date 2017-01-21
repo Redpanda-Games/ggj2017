@@ -50,9 +50,9 @@ var ElementFactory = function (game) {
                 ship.speedMultiplier = 0;
                 ship.docked = true;
                 ship.dockedTime = new Date();
-                ship.drainLife = false;
+                ship.drainLife = true;
                 ship.drainInterval = setInterval(function () {
-                    ship.drainLife = ship.docked ?  true : false;
+                    ship.drainLife = ship.docked;
                 }, 2000);
             }
             if (bullet !== null && ship !== null) {
