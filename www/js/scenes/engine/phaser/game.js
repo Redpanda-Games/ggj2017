@@ -1,5 +1,5 @@
 var Game = function (game) {
-    this.debug = true;
+    this.debug = false;
     this.filter = null;
     this.starSprite = null;
 };
@@ -15,7 +15,8 @@ Game.prototype = {
         this.createStarFilter();
         this.background = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'game_background');
         this.background.anchor.setTo(0.5, 0.5);
-        this.background.alpha = 0.9;
+        this.background.width = this.game.world.width;
+        this.background.height = this.game.world.height;
         this.game.highscore = 0;
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.elementFactory = new ElementFactory(this.game);
