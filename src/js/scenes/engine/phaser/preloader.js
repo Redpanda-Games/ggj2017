@@ -18,7 +18,9 @@ Preloader.prototype = {
         this.load.image('radar_scanner', 'src/img/radar_scanner.png');
         this.load.image('game_background', 'src/img/game_background.png');
         this.load.image('menu_background', 'src/img/menu_background.jpg');
-        this.load.image('menu_start_button', 'src/img/menu_start_button.png');
+
+        this.load.image('menu_logo', 'src/img/gravcore-startscreen-logo.png')
+
         this.load.image('charackter', 'src/img/Char.png');
 
         this.load.audio('attack', 'src/audio/laserattack.wav');
@@ -29,6 +31,7 @@ Preloader.prototype = {
         this.load.spritesheet('ship_01', 'src/img/ship_01.png', 300, 300);
         this.load.spritesheet('bullet_inverse', 'src/img/bullet_inverse.png', 350, 350);
         this.load.spritesheet('bullet_increase', 'src/img/bullet_increase.png', 350, 350);
+        this.load.spritesheet('menu_start_button', 'src/img/menu_start_button.png', 900, 900);
     },
     create: function () {
         this.state.clearCurrentState();
