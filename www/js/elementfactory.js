@@ -12,7 +12,7 @@ var ElementFactory = function(game) {
             var angle = Math.atan2(_game.world.centerY - this.y, _game.world.centerX - this.x) * (180 / Math.PI);
             _game.physics.arcade.velocityFromAngle(angle, speed * this.speedMultiplier, this.body.velocity);
         };
-        sprite.scale.setTo(_game.world.width/100, _game.world.width/100);
+        sprite.scale.setTo(0.5, 0.5);
         return sprite;
     };
     this.factorPlanet = function() {
