@@ -134,7 +134,6 @@ Game.prototype = {
     },
     createStarFilter: function() {
         var fragmentSrc = [
-
             "precision mediump float;",
             "uniform float     time;",
             "uniform vec2      resolution;",
@@ -242,7 +241,7 @@ Game.prototype = {
         ];
 
         this.filter = new Phaser.Filter(this.game, null, fragmentSrc);
-        this.filter.setResolution(800, 600);
+        this.filter.setResolution(this.game.world.width, this.game.world.height);
 
         this.starSprite = this.game.add.sprite();
         this.starSprite.width = this.game.world.width;
