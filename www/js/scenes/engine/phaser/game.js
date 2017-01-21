@@ -42,6 +42,9 @@ Game.prototype = {
         }
     },
     updateHealthBar: function() {
+        if(this.planet.health < 0.5) {
+            this.game.state.start('Menu');
+        }
         for (var i = 0; i < this.enemies.length; i++) {
             if (this.enemies[i].drainLife) {
                 this.enemies[i].drainLife = false;

@@ -32,7 +32,7 @@ var ElementFactory = function(game) {
             sprite.drainLife = false;
             setInterval(function(){
                 sprite.drainLife = true;
-            },3000);
+            },2000);
         });
         return sprite;
     };
