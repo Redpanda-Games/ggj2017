@@ -16,6 +16,9 @@ var ElementFactory = function (game) {
         sprite.dockedTime = 0;
         sprite.moveForward = function (speed) {
             if (!this.docked) {
+              if (this.body == null) {
+              return;
+            };
                 var angle = Math.atan2(_game.world.centerY - this.y, _game.world.centerX - this.x) * (180 / Math.PI);
                 this.angle = angle + 180;
                 _game.physics.arcade.velocityFromAngle(angle, speed * this.speedMultiplier, this.body.velocity);
@@ -47,6 +50,7 @@ var ElementFactory = function (game) {
             if (bullet !== null && ship !== null) {
                 ship.speedMultiplier = ship.speedMultiplier / 2;
                 console.log('langsamer');
+                if (ship.speed == null) {ship.kill()};
             }
         });
         return sprite;
