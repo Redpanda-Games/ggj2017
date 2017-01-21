@@ -40,6 +40,7 @@ Game.prototype = {
         this.updateRadar();
         this.updateHealthBar();
         this.updateHighscore();
+        this.planet.regenerate();
     },
     updateHighscore: function () {
         this.game.highscore += this.game.time.elapsed / 1000;
