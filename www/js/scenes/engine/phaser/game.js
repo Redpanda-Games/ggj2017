@@ -11,26 +11,25 @@ Game.prototype = {
         this.enemies = [];
         this.points = 0;
         this.maxEnemyCount = 0;
-        this.enemySpeed = 10;
+        this.baseEnemySpeed = 100;
+        this.enemySpeed = 0;
     },
     update: function () {
         var timegone = this.game.time.totalElapsedSeconds();
         this.maxEnemyCount = 1 + Math.round(timegone/10);
-        this.enemySpeed = 10 + timegone/10;
+        this.enemySpeed = this.baseEnemySpeed + timegone/10;
         this.generateShipIfNeeded();
         this.updateEnemies();
     },
     updateEnemies: function() {
-        for(var j=0; this.enemies.length; j++) {
+        for(var j=0; j < this.enemies.length; j++) {
             this.enemies[j].moveForward(this.enemySpeed);
         }
     },
     generateShipIfNeeded: function(){
       if(this.enemies.length < this.maxEnemyCount) {
-          for (var i = 0; this.maxEnemyCount-this.enemies.length; i++) {
-              var newEnemy = this.elementFactory.factorShip(this.createRandomEnemyPosition());
-              newEnemy.moveForward(this.enemySpeed);
-              this.enemies.push(newEnemy);
+          for (var i = 0; i < this.maxEnemyCount-this.enemies.length; i++) {
+              this.enemies.push(this.elementFactory.factorShip(this.createRandomEnemyPosition()));
           }
       }
     },
