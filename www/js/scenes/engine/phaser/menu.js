@@ -7,6 +7,8 @@ Menu.prototype = {
         bg.beginFill(0x000000, 0.2);
         bg.drawRect(0, 100, this.game.width, this.game.height - 200);
 
+
+
         var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
         var yPosition = 0;
         for (var i in GlobalConfig.menuConfig.entries) {
