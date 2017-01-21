@@ -33,22 +33,22 @@ Game.prototype = {
         this.enemySpeed = this.baseEnemySpeed + timegone / 10;
         this.generateShipIfNeeded();
         this.updateEnemies();
-        this.updateRadar();
-        this.updateHealthBar();
         if (this.game.input.activePointer.isDown) {
             this.fireBullet();
         }
-        this.updateHighscore();
         this.updateBullet();
+        this.updateRadar();
+        this.updateHealthBar();
+        this.updateHighscore();
     },
     updateHighscore: function () {
         this.game.highscore += this.game.time.elapsed / 1000;
         this.highscore.setText(Math.floor(this.game.highscore).toString());
     },
     updateEnemies: function () {
+        this.game.physics.arcade.collide(this.enemies, this.planet);
+        this.game.physics.arcade.collide(this.bullets, this.enemies);
         for (var j = 0; j < this.enemies.length; j++) {
-            this.game.physics.arcade.collide(this.enemies[j], this.planet);
-            this.game.physics.arcade.collide(this.bullets, this.enemies[j]);
             this.enemies[j].moveForward(this.enemySpeed);
         }
     },
@@ -67,13 +67,11 @@ Game.prototype = {
     updateRadar: function () {
         this.radar.updateShips(this.enemies);
     },
-
     updateBullet: function () {
         for (var k = 0; k < this.bullets.length; k++) {
             this.bullets[k].moveForward(this.bullets[k].bulletangle);
         }
     },
-
     generateShipIfNeeded: function () {
         if (this.enemies.length < this.maxEnemyCount) {
             for (var i = 0; i < this.maxEnemyCount - this.enemies.length; i++) {
@@ -82,12 +80,10 @@ Game.prototype = {
             }
         }
     },
-
     fireBullet: function () {
         var bullet = this.elementFactory.factorBullet();
         this.bullets.push(bullet);
     },
-
     createRandomEnemyPosition: function () {
         var point = {};
         if (Math.random() < 0.5) {
