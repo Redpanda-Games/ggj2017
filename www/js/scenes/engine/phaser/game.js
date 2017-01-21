@@ -73,9 +73,14 @@ Game.prototype = {
     },
     updateBullet: function () {
         for (var k = 0; k < this.bullets.length; k++) {
-            this.bullets[k].moveForward(this.bullets[k].bulletangle);
-        }
+          if (this.bullets[k].body !== null){this.bullets[k].moveForward(this.bullets[k].bulletangle)}
+          else {
+          this.bullets.splice(k, 1);
+          console.log('lösche kugel');
+        };
+      }
     },
+
     generateShipIfNeeded: function () {
         if (this.enemies.length < this.maxEnemyCount) {
             for (var i = 0; i < this.maxEnemyCount - this.enemies.length; i++) {
@@ -104,8 +109,8 @@ Game.prototype = {
         for (var i = 0; i < this.enemies.length; i++) {
             this.game.debug.body(this.enemies[i]);
         }
-        for (var l = 0; l < this.bullets.length; l++) {
+        /*for (var l = 0; l < this.bullets.length; l++) {
             this.game.debug.body(this.bullets[l]);
-        }
+        }*/
     }
 };

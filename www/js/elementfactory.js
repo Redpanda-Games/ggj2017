@@ -49,8 +49,11 @@ var ElementFactory = function (game) {
             }
             if (bullet !== null && ship !== null) {
                 ship.speedMultiplier = ship.speedMultiplier / 2;
-                console.log('langsamer');
                 if (ship.speed == null) {ship.kill()};
+                console.log(bullet);
+                    bullet.destroy();
+                console.log(bullet);
+
             }
         });
         return sprite;
@@ -138,6 +141,9 @@ var ElementFactory = function (game) {
                 y: _game.world.centerY
             }, {x: _game.input.activePointer.x, y: _game.input.activePointer.y}) * (180 / Math.PI);
         bullet.moveForward = function (angle) {
+          if (this.body == null) {
+            return;
+          };
             _game.physics.arcade.velocityFromAngle(angle, 400 * this.speedMultiplier, this.body.velocity);
         };
         return bullet;
