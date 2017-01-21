@@ -47,9 +47,10 @@ Game.prototype = {
           }
       }
     },
-    fireBullet: function(event) {
-        this.game.physics.arcade.moveToPointer(this.elementFactory.factorBullet(), 300);
-        console.log('PEW PEW PEW', event);
+    fireBullet: function() {
+        //this.game.physics.arcade.moveToPointer(this.elementFactory.factorBullet(), 300);
+
+        console.log('PEW PEW PEW', this.game.input.activePointer.x, this.game.input.activePointer.y);
     },
     createRandomEnemyPosition: function() {
         var maxH = this.game.world.height;

@@ -49,6 +49,6 @@ var ElementFactory = function(game) {
     };
     this.factorBullet = function() {
 
-    }
+    };
     _init();
 };
