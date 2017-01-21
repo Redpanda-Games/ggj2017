@@ -3,6 +3,14 @@ var Game = function (game) {
 };
 Game.prototype = {
     create: function () {
+        var width = this.game.world.width;
+        var height = this.game.world.height;
+        this.game.spawnBoundaries = {};
+        this.game.spawnBoundaries.minX = width / 2 * -1;
+        this.game.spawnBoundaries.maxX = width * 1.5;
+        this.game.spawnBoundaries.minY = (((width * 2) - height) / 2) * -1;
+        this.game.spawnBoundaries.maxY = height + Math.abs(this.game.spawnBoundaries.minY);
+
         this.background = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'game_background');
         this.background.anchor.setTo(0.5, 0.5);
         this.game.highscore = 0;
@@ -17,15 +25,6 @@ Game.prototype = {
         this.enemySpeed = 0;
         this.baseTime = this.game.time.totalElapsedSeconds();
         this.highscore = this.elementFactory.factorHighscore();
-
-        var width = this.game.world.width;
-        var height = this.game.world.height;
-        this.game.spawnBoundaries = {
-            minX: width / 2 * -1,
-            maxX: width * 1.5,
-            minY: height / 2 * -1,
-            maxY: height * 1.5
-        };
     },
     update: function () {
         var timegone = (this.game.time.totalElapsedSeconds() - this.baseTime) < 0 ? 0 : (this.game.time.totalElapsedSeconds() - this.baseTime);
@@ -52,7 +51,7 @@ Game.prototype = {
     },
     updateHealthBar: function () {
         if (this.planet.health < 0.5) {
-            // this.game.state.start('Menu');
+            this.game.state.start('Menu');
         }
         for (var i = 0; i < this.enemies.length; i++) {
             if (this.enemies[i].drainLife) {

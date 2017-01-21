@@ -61,6 +61,18 @@ var ElementFactory = function (game) {
         sprite.anchor.setTo(1, 1);
         sprite.planet = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_planet');
         sprite.planet.anchor.setTo(0.5, 0.5);
+        sprite.planet.scale.setTo(0.33, 0.33);
+
+        var fullWidth = _game.spawnBoundaries.maxX + Math.abs(_game.spawnBoundaries.minX);
+        var fullHeight = _game.spawnBoundaries.maxY + Math.abs(_game.spawnBoundaries.minY);
+
+        // draw camera rect
+        var graphics = _game.add.graphics();
+        graphics.lineStyle(1, 0xFFFFFF, 1);
+        var camWidth = (_game.camera.width / fullWidth) * sprite.width;
+        var camHeight = (_game.camera.height / fullHeight) * sprite.height;
+        graphics.drawRect(sprite.position.x - (sprite.width + camWidth) / 2, sprite.position.y - (sprite.height + camHeight) / 2, camWidth, camHeight);
+
         sprite.ships = [];
         sprite.updateShips = function(ships) {
             sprite.ships.forEach(function(oldRadarShip) {
@@ -70,21 +82,20 @@ var ElementFactory = function (game) {
             var radarHeight = this.height;
             for (var i = 0; i < ships.length; i++) {
                 var ship = ships[i];
-                var x = ship.position.x + _game.world.width / 2;
-                var y = ship.position.y + _game.world.height / 2;
-                var fullWidth = _game.spawnBoundaries.maxX + Math.abs(_game.spawnBoundaries.minX);
-                var fullHeight = _game.spawnBoundaries.maxY + Math.abs(_game.spawnBoundaries.minY);
-                //  offset to bottom-right corner
-                var offX = fullWidth - x;
-                var offY = fullHeight - y;
-                // relative from bottom-right corner (not percentage)
-                var relX = offX / fullWidth;
-                var relY = offY / fullHeight;
-                var radX = radarWidth * relX;
-                var radY = radarHeight * relY;
-                var shipRadar = _game.add.sprite(this.position.x - radX, this.position.y - radY, 'radar_ship');
-                shipRadar.anchor.setTo(0.5, 0.5);
-                sprite.ships.push(shipRadar);
+                if(_game.physics.arcade.distanceToXY(ship.position, _game.world.centerX, _game.world.centerY) < fullWidth / 2) {
+                    var x = ship.position.x + Math.abs(_game.spawnBoundaries.minX);
+                    var y = ship.position.y + Math.abs(_game.spawnBoundaries.minY);
+                    var offX = fullWidth - x;
+                    var offY = fullHeight - y;
+                    var relX = offX / fullWidth;
+                    var relY = offY / fullHeight;
+                    var radX = radarWidth * relX;
+                    var radY = radarHeight * relY;
+                    var shipRadar = _game.add.sprite(this.position.x - radX, this.position.y - radY, 'radar_ship');
+                    shipRadar.anchor.setTo(0.5, 0.5);
+                    shipRadar.scale.setTo(0.5, 0.5);
+                    sprite.ships.push(shipRadar);
+                }
             }
         };
         return sprite;
