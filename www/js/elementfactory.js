@@ -29,9 +29,17 @@ var ElementFactory = function(game) {
             if(sprite1.docked !== undefined) {
                 sprite1.docked = true;
                 sprite1.dockedTime = new Date();
+                sprite1.drainLife = false;
+                sprite1.setInterval(function(){
+                    sprite1.drainLife = true;
+                },3000);
             } else {
                 sprite2.docked = true;
                 sprite2.dockedTime = new Date();
+                sprite2.drainLife = false;
+                sprite2.setInterval(function(){
+                    sprite2.drainLife = true;
+                },3000);
             }
         });
         return sprite;
@@ -42,7 +50,7 @@ var ElementFactory = function(game) {
         sprite.anchor.setTo(0.5, 0.5);
         sprite.body.setCircle(sprite.width/2);
         sprite.body.immovable = true;
-        sprite.health = 10;
+        sprite.health = 100;
         return sprite;
     };
     this.factorHealthBar = function() {
