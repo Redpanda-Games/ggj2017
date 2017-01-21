@@ -13,7 +13,7 @@ Game.prototype = {
         this.game.spawnBoundaries.minY = (((width * 2) - height) / 2) * -1;
         this.game.spawnBoundaries.maxY = height + Math.abs(this.game.spawnBoundaries.minY);
         this.createStarFilter();
-        this.background = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'game_background');
+        this.background = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'background');
         this.background.anchor.setTo(0.5, 0.5);
         this.background.width = this.game.world.width;
         this.background.height = this.game.world.height;
