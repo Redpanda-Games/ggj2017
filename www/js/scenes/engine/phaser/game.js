@@ -3,6 +3,7 @@ var Game = function (game) {
 };
 Game.prototype = {
     create: function () {
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.elementFactory = new ElementFactory(this.game);
         this.planet = this.elementFactory.factorPlanet();
         this.healthBar = this.elementFactory.factorHealthBar();
