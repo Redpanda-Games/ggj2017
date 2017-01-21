@@ -1,70 +1,71 @@
-var ElementFactory = function(game) {
+var ElementFactory = function (game) {
     var _game = null;
-    var _init = function() {
+    var _init = function () {
         _game = game;
     };
-    this.factorShip = function(spawn) {
+    this.factorShip = function (spawn) {
         var sprite = _game.add.sprite(spawn.x, spawn.y, 'ship_01');
         sprite.anchor.setTo(0.5, 0.5);
         sprite.scale.setTo(0.5, 0.5);
         _game.physics.arcade.enable(sprite);
-        var radius = sprite.width/2;
+        var radius = sprite.width / 2;
         sprite.body.setCircle(radius, radius, radius);
         sprite.speedMultiplier = 1;
         sprite.docked = false;
         sprite.dockedTime = 0;
-        sprite.moveForward = function(speed) {
-            if(!this.docked) {
+        sprite.moveForward = function (speed) {
+            if (!this.docked) {
                 var angle = Math.atan2(_game.world.centerY - this.y, _game.world.centerX - this.x) * (180 / Math.PI);
                 this.angle = angle + 180;
                 _game.physics.arcade.velocityFromAngle(angle, speed * this.speedMultiplier, this.body.velocity);
             }
         };
-        sprite.kill = function() {
+        sprite.kill = function () {
             _game.highscore += 1;
             this.destroy();
         };
         sprite.body.onCollide = new Phaser.Signal();
-        sprite.body.onCollide.add(function(sprite1, sprite2) {
+        sprite.body.onCollide.add(function (sprite1, sprite2) {
             var sprite = sprite1.docked !== undefined ? sprite1 : sprite2;
             sprite.docked = true;
             sprite.dockedTime = new Date();
             sprite.drainLife = false;
-            setInterval(function(){
+            setInterval(function () {
                 sprite.drainLife = true;
-            },2000);
+            }, 2000);
         });
         return sprite;
     };
-    this.factorPlanet = function() {
+    this.factorPlanet = function () {
         var sprite = _game.add.sprite(_game.world.centerX, _game.world.centerY, 'planet');
         _game.physics.arcade.enable(sprite);
         sprite.anchor.setTo(0.5, 0.5);
-        sprite.body.setCircle(sprite.width/2);
+        sprite.body.setCircle(sprite.width / 2);
         sprite.body.immovable = true;
         sprite.health = 100;
         return sprite;
     };
-    this.factorHealthBar = function() {
+    this.factorHealthBar = function () {
         var text = _game.add.text(_game.world.width - 50, 10, '100', {
             font: "22px Arial",
             fill: "#fff"
         });
         return {
-            update: function(health) {
+            update: function (health) {
                 text.setText(health);
             }
         }
     };
-    this.factorRadar = function() {
+    this.factorRadar = function () {
         return {
-            update: function() {}
+            update: function () {
+            }
         }
     };
-    this.factorBullet = function() {
+    this.factorBullet = function () {
 
     };
-    this.factorHighscore = function() {
+    this.factorHighscore = function () {
         return _game.add.text(10, 10, "0", {
             font: "22px Arial",
             fill: "#fff"

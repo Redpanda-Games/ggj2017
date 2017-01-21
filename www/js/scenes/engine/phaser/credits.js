@@ -22,7 +22,7 @@ Credit.prototype = {
         this.game.input.keyboard.addKeyCapture([Phaser.Keyboard.ESC]);
         this.keys.esc = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
     },
-    update: function() {
+    update: function () {
         if (this.keys.esc.isDown) {
             this.game.state.clearCurrentState();
             this.game.state.start('Menu');
