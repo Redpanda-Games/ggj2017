@@ -36,6 +36,7 @@ var ElementFactory = function (game) {
         });
         return sprite;
     };
+
     this.factorPlanet = function () {
         var sprite = _game.add.sprite(_game.world.centerX, _game.world.centerY, 'planet');
         _game.physics.arcade.enable(sprite);
@@ -45,6 +46,7 @@ var ElementFactory = function (game) {
         sprite.health = 100;
         return sprite;
     };
+
     this.factorHealthBar = function () {
         var text = _game.add.text(_game.world.width - 50, 10, '100', {
             font: "22px Arial",
@@ -56,6 +58,7 @@ var ElementFactory = function (game) {
             }
         }
     };
+
     this.factorRadar = function () {
         var sprite = _game.add.sprite(_game.world.width - 10, _game.world.height - 10, 'radar_ground');
         sprite.anchor.setTo(1, 1);
@@ -100,9 +103,23 @@ var ElementFactory = function (game) {
         };
         return sprite;
     };
-    this.factorBullet = function () {
 
+    this.factorBullet = function () {
+      var bullet = _game.add.sprite(_game.world.centerY, _game.world.centerX, 'radar_ship');
+      bullet.anchor.setTo(0.5, 0.5);
+      _game.physics.arcade.enable(bullet);
+      var radius = bullet.width / 2;
+      bullet.body.setCircle(radius, radius, radius);
+      bullet.speedMultiplier = 1;
+      bullet.isbullet = true;
+      bullet.bulletangle = _game.physics.arcade.angleBetween({x:_game.world.centerX, y:_game.world.centerY}, {x:_game.input.activePointer.x,y:_game.input.activePointer.y}) * (180 / Math.PI);
+      //bullet.bulletangle = _game.physics.arcade.angleBetween((_game.world.centerY, _game.world.centerX), (_game.input.activePointer.x, _game.input.activePointer.y), true);
+      bullet.moveForward = function (angle) {
+        _game.physics.arcade.velocityFromAngle(angle, 100 * this.speedMultiplier, this.body.velocity);
+                      };
+      return bullet;
     };
+
     this.factorHighscore = function () {
         return _game.add.text(10, 10, "0", {
             font: "22px Arial",
