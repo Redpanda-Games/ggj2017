@@ -4,6 +4,8 @@ Menu.prototype = {
     create: function () {
         this.background = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'menu_background');
         this.background.anchor.setTo(0.5, 0.5);
+        this.background.width = this.game.world.width;
+        this.background.height = this.game.world.height;
         var that = this;
         var bg = this.game.add.graphics();
         bg.beginFill(0x000000, 0.2);
