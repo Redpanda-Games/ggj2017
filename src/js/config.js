@@ -31,18 +31,18 @@ var GlobalConfig = {
         backgroundImage: null
     },
     javaScriptDependencies: [
-        'js/lib/phaser.js',
-        'js/mgame.js',
-        'js/elementfactory.js',
-        'js/phaserstarter.js',
-        'js/gameobjectgenerator.js',
-        'js/enginespecificstarterfactory.js',
-        'js/scenes/engine/phaser/boot.js',
-        'js/scenes/engine/phaser/game.js',
-        'js/scenes/engine/phaser/achivements.js',
-        'js/scenes/engine/phaser/credits.js',
-        'js/scenes/engine/phaser/menu.js',
-        'js/scenes/engine/phaser/preloader.js',
-        'js/scenes/engine/phaser/scorescreen.js'
+        'src/js/lib/phaser.js',
+        'src/js/mgame.js',
+        'src/js/elementfactory.js',
+        'src/js/phaserstarter.js',
+        'src/js/gameobjectgenerator.js',
+        'src/js/enginespecificstarterfactory.js',
+        'src/js/scenes/engine/phaser/boot.js',
+        'src/js/scenes/engine/phaser/game.js',
+        'src/js/scenes/engine/phaser/achivements.js',
+        'src/js/scenes/engine/phaser/credits.js',
+        'src/js/scenes/engine/phaser/menu.js',
+        'src/js/scenes/engine/phaser/preloader.js',
+        'src/js/scenes/engine/phaser/scorescreen.js'
     ]
 };
