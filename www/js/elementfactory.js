@@ -16,6 +16,9 @@ var ElementFactory = function (game) {
         sprite.dockedTime = 0;
         sprite.moveForward = function (speed) {
             if (!this.docked) {
+                if (_game.physics.arcade.distanceToXY(this.position, _game.world.centerX, _game.world.centerY) > _game.world.width * 2) {
+                    !this.dockedTime ? this.destroy() : this.kill();
+                }
                 if (this.body == null) {
                     return;
                 }
@@ -44,14 +47,19 @@ var ElementFactory = function (game) {
             bullet = sprite1.isbullet !== undefined ? sprite1 : bullet;
             bullet = sprite2.isbullet !== undefined ? sprite2 : bullet;
             if (planet !== null && ship !== null && !ship.docked) {
+                ship.speedMultiplier = 0;
                 ship.docked = true;
                 ship.dockedTime = new Date();
                 ship.drainLife = false;
-                setInterval(function () {
-                    ship.drainLife = true;
+                ship.drainInterval = setInterval(function () {
+                    ship.drainLife = ship.docked ?  true : false;
                 }, 2000);
             }
             if (bullet !== null && ship !== null) {
+                if(bullet.multiplier < 0 && ship.docked){
+                    ship.speedMultiplier = 1;
+                    ship.docked = false;
+                }
                 ship.addMultiplier(bullet.multiplier);
                 bullet.destroy();
             }
