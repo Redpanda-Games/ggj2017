@@ -66,7 +66,6 @@ var ElementFactory = function (game) {
         var fullWidth = _game.spawnBoundaries.maxX + Math.abs(_game.spawnBoundaries.minX);
         var fullHeight = _game.spawnBoundaries.maxY + Math.abs(_game.spawnBoundaries.minY);
 
-        // draw camera rect
         var graphics = _game.add.graphics();
         graphics.lineStyle(1, 0xFFFFFF, 1);
         var camWidth = (_game.camera.width / fullWidth) * sprite.width;
