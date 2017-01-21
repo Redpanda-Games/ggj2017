@@ -48,6 +48,7 @@ Game.prototype = {
     updateEnemies: function () {
         for (var j = 0; j < this.enemies.length; j++) {
             this.game.physics.arcade.collide(this.enemies[j], this.planet);
+            this.game.physics.arcade.collide(this.bullets,this.enemies[j]);
             this.enemies[j].moveForward(this.enemySpeed);
         }
     },
@@ -109,6 +110,9 @@ Game.prototype = {
         this.game.debug.body(this.planet);
         for (var i = 0; i < this.enemies.length; i++) {
             this.game.debug.body(this.enemies[i]);
+        }
+        for (var l = 0; l < this.bullets.length; l++) {
+            this.game.debug.body(this.bullets[l]);
         }
     }
 };
