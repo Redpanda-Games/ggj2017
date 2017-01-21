@@ -7,8 +7,9 @@ var ElementFactory = function (game) {
         var sprite = _game.add.sprite(spawn.x, spawn.y, 'ship_01');
         sprite.anchor.setTo(0.5, 0.5);
         sprite.scale.setTo(0.5, 0.5);
-        sprite.animations.add('fly', [0,1,2,3,4,5,6,7]);
-        sprite.animations.play('fly', 12, true);
+        sprite.animations.add('fly', [0,1,2,3,4,5,6,7], 12);
+        sprite.animations.add('dock', [8,9,10,11,12,13,14,15,16,17,18], 12);
+        sprite.animations.play('fly', null, true);
         _game.physics.arcade.enable(sprite);
         var radius = sprite.width / 2;
         sprite.body.setCircle(radius, radius, radius);
@@ -49,6 +50,7 @@ var ElementFactory = function (game) {
             bullet = sprite1.isbullet !== undefined ? sprite1 : bullet;
             bullet = sprite2.isbullet !== undefined ? sprite2 : bullet;
             if (planet !== null && ship !== null && !ship.docked) {
+                ship.animations.play('dock', null, false);
                 ship.speedMultiplier = 0;
                 ship.docked = true;
                 ship.dockedTime = new Date();
