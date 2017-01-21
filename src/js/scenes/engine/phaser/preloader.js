@@ -22,14 +22,13 @@ Preloader.prototype = {
         this.load.image('menu_logo', 'src/img/gravcore-startscreen-logo.png')
 
         this.load.image('charackter', 'src/img/Char.png');
-        this.load.image('planet', 'src/img/planet.png');
 
         this.load.audio('attack', 'src/audio/laserattack.wav');
         this.load.audio('flysound','src/audio/space_fly.wav');
         this.load.audio('gameover','src/audio/gameover.wav');
          
-        this.load.spritesheet('ship_01', 'src/img/ship_01.png', 300, 300);
-
+        this.load.spritesheet('planet', 'src/img/planet.png', 298, 298);
+        this.load.spritesheet('ship_01', 'src/img/ship_01.png', 250, 250);
         this.load.spritesheet('bullet_inverse', 'src/img/bullet_inverse.png', 350, 350);
         this.load.spritesheet('bullet_increase', 'src/img/bullet_increase.png', 350, 350);
         this.load.spritesheet('menu_start_button', 'src/img/menu_start_button.png', 900, 900);
