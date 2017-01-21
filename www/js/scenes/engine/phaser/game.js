@@ -48,7 +48,7 @@ Game.prototype = {
     updateEnemies: function () {
         for (var j = 0; j < this.enemies.length; j++) {
             this.game.physics.arcade.collide(this.enemies[j], this.planet);
-            this.game.physics.arcade.collide(this.bullets,this.enemies[j]);
+            this.game.physics.arcade.collide(this.bullets, this.enemies[j]);
             this.enemies[j].moveForward(this.enemySpeed);
         }
     },
@@ -69,10 +69,9 @@ Game.prototype = {
     },
 
     updateBullet: function () {
-      for ( var k = 0; k < this.bullets.length; k++) {
-        this.bullets[k].moveForward(this.bullets[k].bulletangle);
-      }
-
+        for (var k = 0; k < this.bullets.length; k++) {
+            this.bullets[k].moveForward(this.bullets[k].bulletangle);
+        }
     },
 
     generateShipIfNeeded: function () {
@@ -84,15 +83,9 @@ Game.prototype = {
         }
     },
 
-
-
     fireBullet: function () {
-        //this.game.physics.arcade.moveToPointer(this.elementFactory.factorBullet(), 300);
-        console.log('PEW PEW PEW', this.game.input.activePointer.x, this.game.input.activePointer.y);
-        //  Creates 30 bullets, using the 'bullet' graphic
         var bullet = this.elementFactory.factorBullet();
         this.bullets.push(bullet);
-
     },
 
     createRandomEnemyPosition: function () {
