@@ -38,10 +38,17 @@ var ElementFactory = function(game) {
         return sprite;
     };
     this.factorHealthBar = function() {
-
+        return {
+            update: function() {}
+        }
     };
     this.factorRadar = function() {
-
+        return {
+            update: function() {}
+        }
     };
+    this.factorBullet = function() {
+
+    }
     _init();
 };
