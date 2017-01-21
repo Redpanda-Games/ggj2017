@@ -20,6 +20,9 @@ Preloader.prototype = {
         this.load.image('menu_start_button', 'img/menu_start_button.png');
         this.load.image('charackter', 'img/Char.png');
         this.load.image('planet', 'img/planet.png');
+        this.load.audio('attack''audio/laserattack.wav');
+        this.load.audio('flysound','space_fly.wav');
+        this.load.audio('gameover','gameover.wav');
         this.load.spritesheet('ship_01', 'img/ship_01.png', 400, 400, 8);
 
         this.load.image('bullet_inverse', 'img/bullet_inverse.png');
