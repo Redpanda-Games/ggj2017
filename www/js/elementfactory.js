@@ -57,10 +57,37 @@ var ElementFactory = function (game) {
         }
     };
     this.factorRadar = function () {
-        return {
-            update: function () {
+        var sprite = _game.add.sprite(_game.world.width-10, _game.world.height-10, 'radar_ground');
+        sprite.anchor.setTo(1, 1);
+        sprite.planet = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_planet');
+        sprite.planet.anchor.setTo(0.5, 0.5);
+        sprite.ships = [];
+        sprite.updateShips = function(ships) {
+            sprite.ships.forEach(function(oldRadarShip) {
+                oldRadarShip.destroy();
+            });
+            var radarWidth = this.width;
+            var radarHeight = this.height;
+            for (var i = 0; i < ships.length; i++) {
+                var ship = ships[i];
+                var x = ship.position.x + _game.world.width / 2;
+                var y = ship.position.y + _game.world.height / 2;
+                var fullWidth = _game.spawnBoundaries.maxX + Math.abs(_game.spawnBoundaries.minX);
+                var fullHeight = _game.spawnBoundaries.maxY + Math.abs(_game.spawnBoundaries.minY);
+                //  offset to bottom-right corner
+                var offX = fullWidth - x;
+                var offY = fullHeight - y;
+                // relative from bottom-right corner (not percentage)
+                var relX = offX / fullWidth;
+                var relY = offY / fullHeight;
+                var radX = radarWidth * relX;
+                var radY = radarHeight * relY;
+                var shipRadar = _game.add.sprite(this.position.x - radX, this.position.y - radY, 'radar_ship');
+                shipRadar.anchor.setTo(0.5, 0.5);
+                sprite.ships.push(shipRadar);
             }
-        }
+        };
+        return sprite;
     };
     this.factorBullet = function () {
 

@@ -17,6 +17,15 @@ Game.prototype = {
         this.enemySpeed = 0;
         this.baseTime = this.game.time.totalElapsedSeconds();
         this.highscore = this.elementFactory.factorHighscore();
+
+        var width = this.game.world.width;
+        var height = this.game.world.height;
+        this.game.spawnBoundaries = {
+            minX: width / 2 * -1,
+            maxX: width * 1.5,
+            minY: height / 2 * -1,
+            maxY: height * 1.5
+        };
     },
     update: function () {
         var timegone = (this.game.time.totalElapsedSeconds() - this.baseTime) < 0 ? 0 : (this.game.time.totalElapsedSeconds() - this.baseTime);
@@ -43,7 +52,7 @@ Game.prototype = {
     },
     updateHealthBar: function () {
         if (this.planet.health < 0.5) {
-            this.game.state.start('Menu');
+            // this.game.state.start('Menu');
         }
         for (var i = 0; i < this.enemies.length; i++) {
             if (this.enemies[i].drainLife) {
@@ -54,7 +63,7 @@ Game.prototype = {
         }
     },
     updateRadar: function () {
-        this.radar.update(this.enemies);
+        this.radar.updateShips(this.enemies);
     },
     generateShipIfNeeded: function () {
         if (this.enemies.length < this.maxEnemyCount) {
@@ -70,24 +79,13 @@ Game.prototype = {
         console.log('PEW PEW PEW', this.game.input.activePointer.x, this.game.input.activePointer.y);
     },
     createRandomEnemyPosition: function () {
-        var maxH = this.game.world.height;
-        var maxW = this.game.world.width;
         var point = {};
         if (Math.random() < 0.5) {
-            point.x = (0 - (Math.floor(Math.random() * 100)));
-            point.y = Math.floor(Math.random() * (maxH + (Math.random() < 0.5 ? 100 : -100)));
+            point.x = Math.random() < 0.5 ? this.game.spawnBoundaries.minX : this.game.spawnBoundaries.maxX;
+            point.y = this.game.rnd.integerInRange(this.game.spawnBoundaries.minY, this.game.spawnBoundaries.maxY);
         } else {
-            point.x = (maxW + (Math.floor(Math.random() * 100)));
-            point.y = Math.floor(Math.random() * (maxH + (Math.random() < 0.5 ? 100 : -100)));
-        }
-
-        if (Math.random() < 0.5) {
-
-            point.x = Math.floor(Math.random() * (maxW + (Math.random() < 0.5 ? 100 : -100)));
-            point.y = (0 - (Math.floor(Math.random() * 100)));
-        } else {
-            point.x = Math.floor(Math.random() * (maxW + (Math.random() < 0.5 ? 100 : -100)));
-            point.y = (maxH + (Math.floor(Math.random() * 100)));
+            point.x = this.game.rnd.integerInRange(this.game.spawnBoundaries.minX, this.game.spawnBoundaries.maxX);
+            point.y = Math.random() < 0.5 ? this.game.spawnBoundaries.minY : this.game.spawnBoundaries.maxY;
         }
         return point;
     },
