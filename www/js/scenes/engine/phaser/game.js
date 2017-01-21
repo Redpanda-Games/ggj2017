@@ -26,6 +26,9 @@ Game.prototype = {
             this.enemies[j].moveForward(this.enemySpeed);
         }
     },
+    updateHealthBar:function() {
+
+    },
     generateShipIfNeeded: function(){
       if(this.enemies.length < this.maxEnemyCount) {
           for (var i = 0; i < this.maxEnemyCount-this.enemies.length; i++) {
@@ -54,5 +57,13 @@ Game.prototype = {
             point.y = (maxH+(Math.floor(Math.random()*100)));
         }
         return point;
+    },
+    render: function() {
+        //this.game.debug.body(this.planet);
+        if(this.enemies.length < this.maxEnemyCount) {
+            for (var i = 0; i < this.maxEnemyCount-this.enemies.length; i++) {
+                this.game.debug.body(this.enemies[i]);
+            }
+        }
     }
 };
