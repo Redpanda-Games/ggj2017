@@ -3,17 +3,20 @@ var Game = function (game) {
 };
 Game.prototype = {
     create: function () {
+        this.background = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'game_background');
+        this.background.anchor.setTo(0.5, 0.5);
+        this.game.highscore = 0;
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.elementFactory = new ElementFactory(this.game);
         this.planet = this.elementFactory.factorPlanet();
         this.healthBar = this.elementFactory.factorHealthBar();
         this.radar = this.elementFactory.factorRadar();
         this.enemies = [];
-        this.points = 0;
         this.maxEnemyCount = 0;
         this.baseEnemySpeed = 100;
         this.enemySpeed = 0;
         this.baseTime = this.game.time.totalElapsedSeconds();
+        this.highscore = this.elementFactory.factorHighscore();
     },
     update: function () {
         var timegone = (this.game.time.totalElapsedSeconds() - this.baseTime) < 0 ? 0 : (this.game.time.totalElapsedSeconds() - this.baseTime);
@@ -26,6 +29,11 @@ Game.prototype = {
         if (this.game.input.activePointer.isDown) {
             this.fireBullet();
         }
+        this.updateHighscore();
+    },
+    updateHighscore: function() {
+        this.game.highscore += this.game.time.elapsed / 1000;
+        this.highscore.setText(Math.floor(this.game.highscore).toString());
     },
     updateEnemies: function() {
         for(var j=0; j < this.enemies.length; j++) {
