@@ -106,7 +106,9 @@ var ElementFactory = function (game) {
         sprite.scale.setTo(0.5, 0.5);
         sprite.planet = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_planet');
         sprite.planet.anchor.setTo(0.5, 0.5);
-        sprite.planet.scale.setTo(0.25, 0.25);
+        var planetScaleFactor = (_game.planet.width/_game.world.width)/(sprite.planet.width/sprite.width);
+        console.log(planetScaleFactor);
+        sprite.planet.scale.setTo(planetScaleFactor, planetScaleFactor);
         sprite.scanner = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_scanner');
         sprite.scanner.anchor.setTo(0.5, 0.5);
         sprite.scanner.scale.setTo(0.56, 0.56);

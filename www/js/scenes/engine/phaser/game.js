@@ -19,7 +19,7 @@ Game.prototype = {
         this.game.highscore = 0;
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.elementFactory = new ElementFactory(this.game);
-        this.planet = this.elementFactory.factorPlanet();
+        this.game.planet = this.elementFactory.factorPlanet();
         this.healthBar = this.elementFactory.factorHealthBar();
         this.radar = this.elementFactory.factorRadar();
         this.enemies = [];
@@ -44,14 +44,14 @@ Game.prototype = {
         this.updateHealthBar();
         this.updateHighscore();
         this.filter.update(this.game.input.mousePointer);
-        this.planet.regenerate();
+        this.game.planet.regenerate();
     },
     updateHighscore: function () {
         this.game.highscore += this.game.time.elapsed / 1000;
         this.highscore.setText(Math.floor(this.game.highscore).toString());
     },
     updateEnemies: function () {
-        this.game.physics.arcade.collide(this.enemies, this.planet);
+        this.game.physics.arcade.collide(this.enemies, this.game.planet);
         this.game.physics.arcade.collide(this.bullets, this.enemies);
         for (var j = 0; j < this.enemies.length; j++) {
             if (this.enemies[j].body !== null) {
@@ -62,14 +62,14 @@ Game.prototype = {
         }
     },
     updateHealthBar: function () {
-        if (this.planet.health <= 0) {
+        if (this.game.planet.health <= 0) {
             this.game.state.start('Menu');
         }
         for (var i = 0; i < this.enemies.length; i++) {
             if (this.enemies[i].drainLife) {
                 this.enemies[i].drainLife = false;
-                this.planet.health -= 0.5;
-                this.healthBar.update(this.planet.health);
+                this.game.planet.health -= 0.5;
+                this.healthBar.update(this.game.planet.health);
             }
         }
     },
@@ -95,7 +95,7 @@ Game.prototype = {
         }
     },
     fireBullet: function () {
-        if (new Date() - this.lastfire > this.cooldown && this.planet.energy > 0) {
+        if (new Date() - this.lastfire > this.cooldown && this.game.planet.energy > 0) {
             var bullet = null;
             if (this.game.input.activePointer.leftButton.isDown) {
                 bullet = this.elementFactory.factorBullet('increase');
@@ -106,7 +106,7 @@ Game.prototype = {
             if (bullet !== null) {
                 this.lastfire = new Date();
                 this.bullets.push(bullet);
-                this.planet.energy--;
+                this.game.planet.energy--;
             }
         }
     },
@@ -123,7 +123,7 @@ Game.prototype = {
     },
     render: function () {
         if (this.debug) {
-            this.game.debug.body(this.planet);
+            this.game.debug.body(this.game.planet);
             for (var i = 0; i < this.enemies.length; i++) {
                 this.game.debug.body(this.enemies[i]);
             }
