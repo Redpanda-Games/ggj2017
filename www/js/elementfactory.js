@@ -18,8 +18,8 @@ var ElementFactory = function(game) {
     this.factorPlanet = function() {
         var sprite = _game.add.sprite(_game.world.centerX, _game.world.centerY, 'planet');
         _game.physics.arcade.enable(sprite);
-        sprite.body.setCircle(50);
         sprite.anchor.setTo(0.5, 0.5);
+        sprite.body.setCircle(sprite.width/2);
         return sprite;
 
     };

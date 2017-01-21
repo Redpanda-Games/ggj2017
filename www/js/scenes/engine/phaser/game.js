@@ -59,11 +59,9 @@ Game.prototype = {
         return point;
     },
     render: function() {
-        //this.game.debug.body(this.planet);
-        if(this.enemies.length < this.maxEnemyCount) {
-            for (var i = 0; i < this.maxEnemyCount-this.enemies.length; i++) {
-                this.game.debug.body(this.enemies[i]);
-            }
+        this.game.debug.body(this.planet);
+        for (var i = 0; i < this.enemies.length; i++) {
+            this.game.debug.body(this.enemies[i]);
         }
     }
 };
