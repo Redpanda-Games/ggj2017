@@ -76,6 +76,13 @@ var ElementFactory = function (game) {
         sprite.health = 100;
         sprite.energy = 10;
         sprite.isPlanet = true;
+        sprite.lastRegen = 0;
+        sprite.cooldown = 3 * 1000;
+        sprite.regenerate = function () {
+            if(new Date() - this.lastRegen > this.cooldown) {
+                this.energy++;
+            }
+        };
         return sprite;
     };
 

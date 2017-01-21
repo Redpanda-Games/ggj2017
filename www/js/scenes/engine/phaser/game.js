@@ -44,6 +44,7 @@ Game.prototype = {
         this.updateHealthBar();
         this.updateHighscore();
         this.filter.update(this.game.input.mousePointer);
+        this.planet.regenerate();
     },
     updateHighscore: function () {
         this.game.highscore += this.game.time.elapsed / 1000;
