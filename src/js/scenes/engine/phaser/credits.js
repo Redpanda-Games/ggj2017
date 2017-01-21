@@ -5,19 +5,10 @@ var Credit = function (game) {
 };
 Credit.prototype = {
     create: function () {
-        this.background = this.game.add.graphics();
-        this.background.beginFill(0x00aa00, 0.5);
-        this.background.drawRect(0, 100, this.game.width, this.game.height - 200);
-
-        this.text = this.game.add.text(0, 0, "Credits\n\nMike Gehrhardt\nTom Witkowski\nMalte Zimmermann", {
-            font: "bold 32px Arial",
-            fill: "#fff",
-            boundsAlignH: "center",
-            boundsAlignV: "middle",
-            align: "center"
-        });
-        this.text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
-        this.text.setTextBounds(0, 100, this.background.width, this.background.height);
+        this.background = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'credits');
+        this.background.anchor.setTo(0.5, 0.5);
+        this.background.width = this.game.world.width;
+        this.background.height = this.game.world.height;
 
         this.game.input.keyboard.addKeyCapture([Phaser.Keyboard.ESC]);
         this.keys.esc = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
