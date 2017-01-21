@@ -26,21 +26,13 @@ var ElementFactory = function(game) {
         };
         sprite.body.onCollide = new Phaser.Signal();
         sprite.body.onCollide.add(function(sprite1, sprite2) {
-            if(sprite1.docked !== undefined) {
-                sprite1.docked = true;
-                sprite1.dockedTime = new Date();
-                sprite1.drainLife = false;
-                setInterval(function(){
-                    sprite1.drainLife = true;
-                },3000);
-            } else {
-                sprite2.docked = true;
-                sprite2.dockedTime = new Date();
-                sprite2.drainLife = false;
-                setInterval(function(){
-                    sprite2.drainLife = true;
-                },3000);
-            }
+            var sprite = sprite1.docked !== undefined ? sprite1 : sprite2;
+            sprite.docked = true;
+            sprite.dockedTime = new Date();
+            sprite.drainLife = false;
+            setInterval(function(){
+                sprite.drainLife = true;
+            },3000);
         });
         return sprite;
     };
