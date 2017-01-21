@@ -6,6 +6,10 @@ Menu.prototype = {
         this.background.anchor.setTo(0.5, 0.5);
         this.background.width = this.game.world.width;
         this.background.height = this.game.world.height;
+        this.background_logo = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'menu_logo');
+        this.background_logo.anchor.setTo(0.5, 0.5);
+        this.background_logo.width = this.game.world.width;
+        this.background_logo.height = this.game.world.height;
         var that = this;
         var style = {font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle"};
         var yPosition = 0;
@@ -21,6 +25,7 @@ Menu.prototype = {
                     button.animations.add('hover', [0,1,2], 6);
                     button.animations.add('out', [0,1,2], 3);
                     button.inputEnabled = true;
+                    button.input.useHandCursor = true;
                     button.animations.stop(null,true);
                     button.animations.play('out', null, true);
                     button.events.onInputDown.add(function(){

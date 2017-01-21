@@ -19,6 +19,8 @@ Preloader.prototype = {
         this.load.image('game_background', 'src/img/game_background.png');
         this.load.image('menu_background', 'src/img/menu_background.jpg');
 
+        this.load.image('menu_logo', 'src/img/gravcore-startscreen-logo.png')
+
         this.load.image('charackter', 'src/img/Char.png');
         this.load.image('planet', 'src/img/planet.png');
 
