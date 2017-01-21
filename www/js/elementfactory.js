@@ -49,7 +49,6 @@ var ElementFactory = function (game) {
             }
             if (bullet !== null && ship !== null) {
                 ship.speedMultiplier = ship.speedMultiplier / 2;
-                console.log('langsamer');
                 if (ship.speed == null) {
                     ship.kill()
                 }
