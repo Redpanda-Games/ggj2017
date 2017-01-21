@@ -42,7 +42,13 @@ Game.prototype = {
         }
     },
     updateHealthBar: function() {
-        this.healthBar.update();
+        for (var i = 0; i < this.enemies.length; i++) {
+            if (this.enemies[i].drainLife) {
+                this.enemies[i].drainLife = false;
+                this.planet.health-=0.5;
+                this.healthBar.update(this.planet.health);
+            }
+        }
     },
     updateRadar: function() {
         this.radar.update(this.enemies);

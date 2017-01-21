@@ -30,14 +30,14 @@ var ElementFactory = function(game) {
                 sprite1.docked = true;
                 sprite1.dockedTime = new Date();
                 sprite1.drainLife = false;
-                sprite1.setInterval(function(){
+                setInterval(function(){
                     sprite1.drainLife = true;
                 },3000);
             } else {
                 sprite2.docked = true;
                 sprite2.dockedTime = new Date();
                 sprite2.drainLife = false;
-                sprite2.setInterval(function(){
+                setInterval(function(){
                     sprite2.drainLife = true;
                 },3000);
             }
@@ -54,8 +54,14 @@ var ElementFactory = function(game) {
         return sprite;
     };
     this.factorHealthBar = function() {
+        var text = _game.add.text(_game.world.width - 50, 10, health, {
+            font: "22px Arial",
+            fill: "#fff"
+        });
         return {
-            update: function() {}
+            update: function(health) {
+                text.setText(health);
+            }
         }
     };
     this.factorRadar = function() {
