@@ -19,6 +19,9 @@ Preloader.prototype = {
         this.load.image('charackter', 'img/Char.png');
         this.load.image('planet', 'img/planet.png');
         this.load.image('ship_01', 'img/ship_01.png');
+
+        this.load.image('bullet_inverse', 'img/bullet_inverse.png');
+        this.load.image('bullet_increase', 'img/bullet_increase.png');
     },
     create: function () {
         this.state.clearCurrentState();

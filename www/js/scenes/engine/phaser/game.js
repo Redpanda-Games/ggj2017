@@ -34,9 +34,7 @@ Game.prototype = {
         this.maxEnemyCount = 1 + Math.round(timegone / 10);
         this.enemySpeed = this.baseEnemySpeed + timegone / 10;
         this.generateShipIfNeeded();
-        if (this.game.input.activePointer.isDown) {
-            this.fireBullet();
-        }
+        this.fireBullet();
         this.updateEnemies();
         this.updateBullet();
         this.updateRadar();
@@ -92,10 +90,19 @@ Game.prototype = {
         }
     },
     fireBullet: function () {
-        if(new Date() - this.lastfire > this.cooldown) {
-            this.lastfire = new Date();
-            var bullet = this.elementFactory.factorBullet();
-            this.bullets.push(bullet);
+        if (new Date() - this.lastfire > this.cooldown && this.planet.energy > 0) {
+            var bullet = null;
+            if (this.game.input.activePointer.leftButton.isDown) {
+                bullet = this.elementFactory.factorBullet('increase');
+            }
+            if (this.game.input.activePointer.rightButton.isDown) {
+                bullet = this.elementFactory.factorBullet('inverse');
+            }
+            if (bullet !== null) {
+                this.lastfire = new Date();
+                this.bullets.push(bullet);
+                this.planet.energy--;
+            }
         }
     },
     createRandomEnemyPosition: function () {
@@ -110,7 +117,7 @@ Game.prototype = {
         return point;
     },
     render: function () {
-        if(this.debug) {
+        if (this.debug) {
             this.game.debug.body(this.planet);
             for (var i = 0; i < this.enemies.length; i++) {
                 this.game.debug.body(this.enemies[i]);

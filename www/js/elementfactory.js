@@ -28,6 +28,10 @@ var ElementFactory = function (game) {
             _game.highscore += 1;
             this.destroy();
         };
+        sprite.addMultiplier = function (multiplier) {
+            this.speedMultiplier *= multiplier;
+            this.speedMultiplier = Math.max(-2, Math.min(6, this.speedMultiplier));
+        };
         sprite.body.onCollide = new Phaser.Signal();
         sprite.body.onCollide.add(function (sprite1, sprite2) {
             var planet = null;
@@ -48,10 +52,7 @@ var ElementFactory = function (game) {
                 }, 2000);
             }
             if (bullet !== null && ship !== null) {
-                ship.speedMultiplier = ship.speedMultiplier / 2;
-                if (ship.speed == null) {
-                    ship.kill()
-                }
+                ship.addMultiplier(bullet.multiplier);
                 bullet.destroy();
             }
         });
@@ -65,6 +66,7 @@ var ElementFactory = function (game) {
         sprite.body.setCircle(sprite.width / 2);
         sprite.body.immovable = true;
         sprite.health = 100;
+        sprite.energy = 10;
         sprite.isPlanet = true;
         return sprite;
     };
@@ -132,27 +134,27 @@ var ElementFactory = function (game) {
         return sprite;
     };
 
-    this.factorBullet = function () {
-        var bullet = _game.add.sprite(_game.world.centerX, _game.world.centerY, 'radar_ship');
+    this.factorBullet = function (type) {
+        var bullet = _game.add.sprite(_game.world.centerX, _game.world.centerY, 'bullet_' + type);
         bullet.anchor.setTo(0.5, 0.5);
         bullet.scale.setTo(0.5, 0.5);
         _game.physics.arcade.enable(bullet);
         var radius = bullet.width / 2;
         bullet.body.setCircle(radius, radius, radius);
-        bullet.speedMultiplier = 1;
         bullet.isbullet = true;
+        bullet.multiplier = type == 'inverse' ? -1 : 2;
         bullet.bulletangle = _game.physics.arcade.angleBetween({
                 x: _game.world.centerX,
                 y: _game.world.centerY
             }, {x: _game.input.activePointer.x, y: _game.input.activePointer.y}) * (180 / Math.PI);
         bullet.moveForward = function (angle) {
-            if(_game.physics.arcade.distanceToXY(this.position, _game.world.centerX, _game.world.centerY) > _game.world.width * 2) {
+            if (_game.physics.arcade.distanceToXY(this.position, _game.world.centerX, _game.world.centerY) > _game.world.width * 2) {
                 this.destroy();
             }
             if (this.body == null) {
                 return;
             }
-            _game.physics.arcade.velocityFromAngle(angle, 400 * this.speedMultiplier, this.body.velocity);
+            _game.physics.arcade.velocityFromAngle(angle, 1000, this.body.velocity);
         };
         return bullet;
     };
