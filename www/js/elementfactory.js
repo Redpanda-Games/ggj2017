@@ -57,7 +57,7 @@ var ElementFactory = function (game) {
         }
     };
     this.factorRadar = function () {
-        var sprite = _game.add.sprite(_game.world.width-10, _game.world.height-10, 'radar_ground');
+        var sprite = _game.add.sprite(_game.world.width - 10, _game.world.height - 10, 'radar_ground');
         sprite.anchor.setTo(1, 1);
         sprite.planet = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_planet');
         sprite.planet.anchor.setTo(0.5, 0.5);
@@ -74,15 +74,15 @@ var ElementFactory = function (game) {
         graphics.drawRect(sprite.position.x - (sprite.width + camWidth) / 2, sprite.position.y - (sprite.height + camHeight) / 2, camWidth, camHeight);
 
         sprite.ships = [];
-        sprite.updateShips = function(ships) {
-            sprite.ships.forEach(function(oldRadarShip) {
+        sprite.updateShips = function (ships) {
+            sprite.ships.forEach(function (oldRadarShip) {
                 oldRadarShip.destroy();
             });
             var radarWidth = this.width;
             var radarHeight = this.height;
             for (var i = 0; i < ships.length; i++) {
                 var ship = ships[i];
-                if(_game.physics.arcade.distanceToXY(ship.position, _game.world.centerX, _game.world.centerY) < fullWidth / 2) {
+                if (_game.physics.arcade.distanceToXY(ship.position, _game.world.centerX, _game.world.centerY) < fullWidth / 2) {
                     var x = ship.position.x + Math.abs(_game.spawnBoundaries.minX);
                     var y = ship.position.y + Math.abs(_game.spawnBoundaries.minY);
                     var offX = fullWidth - x;
