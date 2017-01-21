@@ -46,7 +46,7 @@ var ElementFactory = function(game) {
         return sprite;
     };
     this.factorHealthBar = function() {
-        var text = _game.add.text(_game.world.width - 50, 10, health, {
+        var text = _game.add.text(_game.world.width - 50, 10, '100', {
             font: "22px Arial",
             fill: "#fff"
         });
