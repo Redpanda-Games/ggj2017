@@ -1,8 +1,44 @@
-var Game = function(game) {
+var Game = function (game) {
 
 };
 Game.prototype = {
-  create: function() {
-
-  }
+    create: function () {
+        this.elementFactory = new ElementFactory(this.game);
+        this.planet = this.elementFactory.factorPlanet();
+        this.healthBar = this.elementFactory.factorHealthBar();
+        this.radar = this.elementFactory.factorRadar();
+        this.enemies = [];
+        this.points = 0;
+        this.maxEnemyCount = 0;
+        this.enemySpeed = 10;
+    },
+    update: function () {
+        var timegone = this.game.time.totalElapsedSeconds();
+        this.maxEnemyCount = 1 + Math.round(timegone/10);
+        this.enemySpeed = 10 + timegone/10;
+        this.generateShipIfNeeded();
+        this.updateEnemies();
+    },
+    updateEnemies: function() {
+        for(var j=0; this.enemies.length; j++) {
+            this.enemies[j].moveForward(this.enemySpeed);
+        }
+    },
+    generateShipIfNeeded: function(){
+      if(this.enemies.length < this.maxEnemyCount) {
+          for (var i = 0; this.maxEnemyCount-this.enemies.length; i++) {
+              var newEnemy = this.elementFactory.factorShip(this.createRandomEnemyPosition());
+              newEnemy.moveForward(this.enemySpeed);
+              this.enemies.push(newEnemy);
+          }
+      }
+    },
+    createRandomEnemyPosition: function() {
+        var maxH = this.game.world.height;
+        var maxW = this.game.world.width;
+        return {
+            x:  Math.random() < 0.5 ? (0-(Math.floor(Math.random()*100))) : (maxW+(Math.floor(Math.random()*100))),
+            y:  Math.random() < 0.5 ? (0-(Math.floor(Math.random()*100))) : (maxH+(Math.floor(Math.random()*100)))
+        }
+    }
 };
