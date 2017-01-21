@@ -48,6 +48,7 @@ Game.prototype = {
       }
     },
     fireBullet: function(event) {
+        this.game.physics.arcade.moveToPointer(this.elementFactory.factorBullet(), 300);
         console.log('PEW PEW PEW', event);
     },
     createRandomEnemyPosition: function() {
