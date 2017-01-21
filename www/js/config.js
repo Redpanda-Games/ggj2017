@@ -15,9 +15,10 @@ var GlobalConfig = {
     menuConfig: {
         entries: [
             {
-                title: 'Start New Game',
+                title: '',
+                img: 'menu_start_button',
                 scene: 'Game'
-            },
+            }/*,
             {
                 title: 'Achivements',
                 scene: 'Achivement'
@@ -25,7 +26,7 @@ var GlobalConfig = {
             {
                 title: 'Credits',
                 scene: 'Credit'
-            }
+            }*/
         ],
         backgroundImage: null
     },
