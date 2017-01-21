@@ -159,8 +159,9 @@ var ElementFactory = function (game) {
         var bullet = _game.add.sprite(_game.world.centerX, _game.world.centerY, 'bullet_' + type);
         bullet.anchor.setTo(0.5, 0.5);
         bullet.scale.setTo(0.5, 0.5);
+        bullet.animations.add('loop',[0,1,2],24);
         _game.physics.arcade.enable(bullet);
-        var radius = bullet.width / 2;
+        var radius = bullet.width/2;
         bullet.body.setCircle(radius, radius, radius);
         bullet.isbullet = true;
         bullet.multiplier = type == 'inverse' ? -1 : 2;
@@ -177,6 +178,8 @@ var ElementFactory = function (game) {
             }
             _game.physics.arcade.velocityFromAngle(angle, 1000, this.body.velocity);
         };
+        bullet.animations.play('loop', null, true);
+        bullet.angle = bullet.bulletangle;
         return bullet;
     };
 
