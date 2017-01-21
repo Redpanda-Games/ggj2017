@@ -132,7 +132,7 @@ var ElementFactory = function (game) {
     };
 
     this.factorBullet = function () {
-      var bullet = _game.add.sprite(_game.world.centerY, _game.world.centerX, 'radar_ship');
+      var bullet = _game.add.sprite(_game.world.centerX, _game.world.centerY, 'radar_ship');
       bullet.anchor.setTo(0.5, 0.5);
       bullet.scale.setTo(0.5, 0.5);
       _game.physics.arcade.enable(bullet);
