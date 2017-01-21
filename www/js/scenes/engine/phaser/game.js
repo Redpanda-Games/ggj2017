@@ -62,7 +62,7 @@ Game.prototype = {
         }
     },
     updateHealthBar: function () {
-        if (this.planet.health < 0.5) {
+        if (this.planet.health <= 0) {
             this.game.state.start('Menu');
         }
         for (var i = 0; i < this.enemies.length; i++) {
