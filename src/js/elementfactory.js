@@ -158,8 +158,8 @@ var ElementFactory = function (game) {
     this.factorBullet = function (type) {
         var bullet = _game.add.sprite(_game.world.centerX, _game.world.centerY, 'bullet_' + type);
         bullet.anchor.setTo(0.5, 0.5);
-        bullet.scale.setTo(0.5, 0.5);
-        bullet.animations.add('loop',[0,1,2],24);
+        bullet.scale.setTo(0.25, 0.25);
+        bullet.animations.add('loop',[0,1,2],12);
         _game.physics.arcade.enable(bullet);
         var radius = bullet.width/2;
         bullet.body.setCircle(radius, radius, radius);
@@ -173,7 +173,7 @@ var ElementFactory = function (game) {
             if (this.body == null) {
                 return;
             }
-            _game.physics.arcade.velocityFromAngle(angle, 1000, this.body.velocity);
+            _game.physics.arcade.velocityFromAngle(angle, 800, this.body.velocity);
         };
         bullet.animations.play('loop', null, true);
         bullet.angle = bullet.bulletangle;
