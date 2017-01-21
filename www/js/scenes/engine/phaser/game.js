@@ -20,14 +20,18 @@ Game.prototype = {
         this.enemySpeed = this.baseEnemySpeed + timegone/10;
         this.generateShipIfNeeded();
         this.updateEnemies();
+        this.updateRadar();
     },
     updateEnemies: function() {
         for(var j=0; j < this.enemies.length; j++) {
             this.enemies[j].moveForward(this.enemySpeed);
         }
     },
-    updateHealthBar:function() {
+    updateHealthBar: function() {
 
+    },
+    updateRadar: function() {
+        this.radar.update(this.enemies);
     },
     generateShipIfNeeded: function(){
       if(this.enemies.length < this.maxEnemyCount) {
