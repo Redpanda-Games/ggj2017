@@ -8,6 +8,19 @@ Preloader.prototype = {
         this.background = this.add.sprite(0, 0, 'preloaderBackground');
         this.preloadBar = this.add.sprite(400, 500, 'preloaderBar');
         this.load.setPreloadSprite(this.preloadBar);
+
+        this.load.image('radar_ground','img/Radar-Grund.png');
+        this.load.image('radar_earth','img/Radar-Erdeplanet.png');
+        this.load.image('radar_spaceship', 'img/Radar-Raketen.png');
+        this.load.image('energybar','img/Energie-Bar.png');
+        this.load.image('healthbar','img/HP-BAR.png');
+        this.load.image('level_background','img/Background.png');
+        this.load.image('charackter','img/Char.png');
+        this.load.image('planet','img/planet.png');
+        this.load.image('ship_01','img/ship_01.png');
+
+
+
     },
     create: function () {
         this.state.clearCurrentState();
