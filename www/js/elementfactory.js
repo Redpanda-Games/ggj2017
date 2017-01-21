@@ -36,7 +36,7 @@ var ElementFactory = function (game) {
             var bullet = null;
             bullet = sprite1.isbullet !== undefined ? sprite1 : bullet;
             bullet = sprite2.isbullet !== undefined ? sprite2 : bullet;
-            if (planet !== null && ship !== null) {
+            if (planet !== null && ship !== null && !ship.docked) {
                 ship.docked = true;
                 ship.dockedTime = new Date();
                 ship.drainLife = false;
