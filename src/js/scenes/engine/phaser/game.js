@@ -100,8 +100,7 @@ Game.prototype = {
             var bullet = null;
             if (this.game.input.activePointer.leftButton.isDown) {
                 bullet = this.elementFactory.factorBullet('increase');
-            }
-            if (this.game.input.activePointer.rightButton.isDown) {
+            } else if (this.game.input.activePointer.rightButton.isDown) {
                 bullet = this.elementFactory.factorBullet('inverse');
             }
             if (bullet !== null) {
@@ -125,6 +124,7 @@ Game.prototype = {
     render: function () {
         if (this.debug) {
             this.game.debug.body(this.game.planet);
+            this.game.debug.geom(this.game.planet.getBounds());
             for (var i = 0; i < this.enemies.length; i++) {
                 this.game.debug.body(this.enemies[i]);
             }
