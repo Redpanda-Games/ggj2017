@@ -73,10 +73,9 @@ var ElementFactory = function (game) {
 
     this.factorPlanet = function () {
         var sprite = _game.add.sprite(_game.world.centerX, _game.world.centerY, 'planet');
-        _game.physics.arcade.enable(sprite);
-        sprite.scale.setTo(0.5, 0.5);
         sprite.anchor.setTo(0.5, 0.5);
-        sprite.body.setCircle(sprite.width / 2, sprite.width / 2, sprite.width / 2);
+        _game.physics.arcade.enable(sprite);
+        sprite.body.setCircle(sprite.width / 2);
         sprite.animations.add('idle', [0,1,2,3,4,5,6,7,8,9,10,11], 6);
         sprite.animations.play('idle', null, true);
         sprite.body.immovable = true;
