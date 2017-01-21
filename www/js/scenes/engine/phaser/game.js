@@ -27,7 +27,7 @@ Game.prototype = {
         this.baseTime = this.game.time.totalElapsedSeconds();
         this.highscore = this.elementFactory.factorHighscore();
         this.lastfire = 0;
-        this.cooldown = 1 * 1000; // seconds
+        this.cooldown = 0.25 * 1000; // seconds
     },
     update: function () {
         var timegone = (this.game.time.totalElapsedSeconds() - this.baseTime) < 0 ? 0 : (this.game.time.totalElapsedSeconds() - this.baseTime);
