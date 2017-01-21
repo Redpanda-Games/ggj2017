@@ -13,14 +13,19 @@ Game.prototype = {
         this.maxEnemyCount = 0;
         this.baseEnemySpeed = 100;
         this.enemySpeed = 0;
+        this.baseTime = this.game.time.totalElapsedSeconds();
     },
     update: function () {
-        var timegone = this.game.time.totalElapsedSeconds();
+        var timegone = (this.game.time.totalElapsedSeconds() - this.baseTime) < 0 ? 0 : (this.game.time.totalElapsedSeconds() - this.baseTime);
         this.maxEnemyCount = 1 + Math.round(timegone/10);
         this.enemySpeed = this.baseEnemySpeed + timegone/10;
         this.generateShipIfNeeded();
         this.updateEnemies();
         this.updateRadar();
+        this.updateHealthBar();
+        if (this.game.input.activePointer.isDown) {
+            this.fireBullet();
+        }
     },
     updateEnemies: function() {
         for(var j=0; j < this.enemies.length; j++) {
@@ -39,6 +44,9 @@ Game.prototype = {
               this.enemies.push(this.elementFactory.factorShip(this.createRandomEnemyPosition()));
           }
       }
+    },
+    fireBullet: function(event) {
+        console.log('PEW PEW PEW', event);
     },
     createRandomEnemyPosition: function() {
         var maxH = this.game.world.height;

@@ -33,5 +33,8 @@ var ElementFactory = function(game) {
             update: function() {}
         }
     };
+    this.factorBullet = function() {
+
+    }
     _init();
 };
