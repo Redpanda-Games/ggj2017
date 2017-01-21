@@ -1,5 +1,5 @@
 var Game = function (game) {
-    this.debug = false;
+    this.debug = true;
     this.filter = null;
     this.starSprite = null;
 };
