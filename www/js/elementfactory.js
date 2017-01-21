@@ -24,7 +24,9 @@ var ElementFactory = function(game) {
 
     };
     this.factorHealthBar = function() {
-
+        return {
+            update: function() {}
+        }
     };
     this.factorRadar = function() {
         return {

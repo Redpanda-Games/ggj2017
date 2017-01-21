@@ -28,7 +28,7 @@ Game.prototype = {
         }
     },
     updateHealthBar: function() {
-
+        this.healthBar.update();
     },
     updateRadar: function() {
         this.radar.update(this.enemies);
