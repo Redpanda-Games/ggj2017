@@ -23,6 +23,7 @@ Game.prototype = {
     },
     updateEnemies: function() {
         for(var j=0; j < this.enemies.length; j++) {
+            this.game.physics.arcade.collide(this.enemies[j], this.planet);
             this.enemies[j].moveForward(this.enemySpeed);
         }
     },
@@ -32,7 +33,8 @@ Game.prototype = {
     generateShipIfNeeded: function(){
       if(this.enemies.length < this.maxEnemyCount) {
           for (var i = 0; i < this.maxEnemyCount-this.enemies.length; i++) {
-              this.enemies.push(this.elementFactory.factorShip(this.createRandomEnemyPosition()));
+              var ship = this.elementFactory.factorShip(this.createRandomEnemyPosition());
+              this.enemies.push(ship);
           }
       }
     },
