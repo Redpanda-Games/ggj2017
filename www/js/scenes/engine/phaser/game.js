@@ -1,5 +1,5 @@
 var Game = function (game) {
-
+    this.debug = false;
 };
 Game.prototype = {
     create: function () {
@@ -110,12 +110,14 @@ Game.prototype = {
         return point;
     },
     render: function () {
-        this.game.debug.body(this.planet);
-        for (var i = 0; i < this.enemies.length; i++) {
-            this.game.debug.body(this.enemies[i]);
-        }
-        for (var l = 0; l < this.bullets.length; l++) {
-            this.game.debug.body(this.bullets[l]);
+        if(this.debug) {
+            this.game.debug.body(this.planet);
+            for (var i = 0; i < this.enemies.length; i++) {
+                this.game.debug.body(this.enemies[i]);
+            }
+            for (var l = 0; l < this.bullets.length; l++) {
+                this.game.debug.body(this.bullets[l]);
+            }
         }
     }
 };
