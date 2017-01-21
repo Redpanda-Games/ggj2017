@@ -7,10 +7,11 @@ var ElementFactory = function (game) {
         var sprite = _game.add.sprite(spawn.x, spawn.y, 'ship_01');
         sprite.anchor.setTo(0.5, 0.5);
         sprite.scale.setTo(0.5, 0.5);
-        sprite.animations.add('fly', [0,1,2,3,4,5,6,7]);
-        sprite.animations.play('fly', 12, true);
+        sprite.animations.add('fly', [0,1,2,3,4,5,6,7], 12);
+        sprite.animations.add('dock', [8,9,10,11,12,13,14,15,16,17,18], 12);
+        sprite.animations.play('fly', null, true);
         _game.physics.arcade.enable(sprite);
-        var radius = sprite.width / 2;
+        var radius = sprite.width/2;
         sprite.body.setCircle(radius, radius, radius);
         sprite.speedMultiplier = 1;
         sprite.docked = false;
@@ -49,6 +50,7 @@ var ElementFactory = function (game) {
             bullet = sprite1.isbullet !== undefined ? sprite1 : bullet;
             bullet = sprite2.isbullet !== undefined ? sprite2 : bullet;
             if (planet !== null && ship !== null && !ship.docked) {
+                ship.animations.play('dock', null, false);
                 ship.speedMultiplier = 0;
                 ship.docked = true;
                 ship.dockedTime = new Date();
@@ -72,8 +74,9 @@ var ElementFactory = function (game) {
     this.factorPlanet = function () {
         var sprite = _game.add.sprite(_game.world.centerX, _game.world.centerY, 'planet');
         _game.physics.arcade.enable(sprite);
+        sprite.scale.setTo(0.5, 0.5);
         sprite.anchor.setTo(0.5, 0.5);
-        sprite.body.setCircle(sprite.width / 2);
+        sprite.body.setCircle(sprite.width / 2, sprite.width / 2, sprite.width / 2);
         sprite.body.immovable = true;
         sprite.health = 100;
         sprite.energy = 10;
@@ -103,15 +106,14 @@ var ElementFactory = function (game) {
     this.factorRadar = function () {
         var sprite = _game.add.sprite(_game.world.width - 10, _game.world.height - 10, 'radar_ground');
         sprite.anchor.setTo(1, 1);
-        sprite.scale.setTo(0.5, 0.5);
+        sprite.scale.setTo(0.4, 0.4);
         sprite.planet = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_planet');
         sprite.planet.anchor.setTo(0.5, 0.5);
         var planetScaleFactor = (_game.planet.width/_game.world.width)/(sprite.planet.width/sprite.width);
-        console.log(planetScaleFactor);
         sprite.planet.scale.setTo(planetScaleFactor, planetScaleFactor);
         sprite.scanner = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_scanner');
         sprite.scanner.anchor.setTo(0.5, 0.5);
-        sprite.scanner.scale.setTo(0.56, 0.56);
+        sprite.scanner.scale.setTo(0.46, 0.46);
 
         var fullWidth = _game.spawnBoundaries.maxX + Math.abs(_game.spawnBoundaries.minX);
         var fullHeight = _game.spawnBoundaries.maxY + Math.abs(_game.spawnBoundaries.minY);
