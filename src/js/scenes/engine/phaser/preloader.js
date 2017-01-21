@@ -27,8 +27,8 @@ Preloader.prototype = {
          
         this.load.spritesheet('ship_01', 'src/img/ship_01.png', 300, 300);
 
-        this.load.spritesheet('bullet_inverse', 'img/bullet_inverse.png', 350, 350);
-        this.load.spritesheet('bullet_increase', 'img/bullet_increase.png', 350, 350);
+        this.load.spritesheet('bullet_inverse', 'src/img/bullet_inverse.png', 350, 350);
+        this.load.spritesheet('bullet_increase', 'src/img/bullet_increase.png', 350, 350);
     },
     create: function () {
         this.state.clearCurrentState();
