@@ -17,6 +17,7 @@ Game.prototype = {
         this.background.anchor.setTo(0.5, 0.5);
         this.background.width = this.game.world.width;
         this.background.height = this.game.world.height;
+        this.background.alpha = 0.8;
         this.game.highscore = 0;
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.elementFactory = new ElementFactory(this.game);
@@ -166,7 +167,7 @@ Game.prototype = {
             "c /= float(MAX_ITER);",
             "c = 1.5 - sqrt(c);",
 
-            "vec4 texColor = vec4(0.0, 0.01, 0.015, 1.0);",
+            "vec4 texColor = vec4(0.03, 0.01, 0.015, 1.0);",
 
             "texColor.rgb *= (1.0 / (1.0 - (c + 0.05)));",
 
