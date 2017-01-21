@@ -36,9 +36,23 @@ Game.prototype = {
     createRandomEnemyPosition: function() {
         var maxH = this.game.world.height;
         var maxW = this.game.world.width;
-        return {
-            x:  Math.random() < 0.5 ? (0-(Math.floor(Math.random()*100))) : (maxW+(Math.floor(Math.random()*100))),
-            y:  Math.random() < 0.5 ? (0-(Math.floor(Math.random()*100))) : (maxH+(Math.floor(Math.random()*100)))
+        var point = {};
+        if(Math.random() < 0.5) {
+            point.x = (0-(Math.floor(Math.random()*100)));
+            point.y = Math.floor(Math.random()*(maxH + (Math.random() < 0.5 ? 100 : -100)));
+        } else {
+            point.x = (maxW+(Math.floor(Math.random()*100)));
+            point.y = Math.floor(Math.random()*(maxH + (Math.random() < 0.5 ? 100 : -100)));
         }
+
+        if(Math.random() < 0.5) {
+
+            point.x = Math.floor(Math.random()*(maxW + (Math.random() < 0.5 ? 100 : -100)));
+            point.y = (0-(Math.floor(Math.random()*100)));
+        } else {
+            point.x = Math.floor(Math.random()*(maxW + (Math.random() < 0.5 ? 100 : -100)));
+            point.y = (maxH+(Math.floor(Math.random()*100)));
+        }
+        return point;
     }
 };
