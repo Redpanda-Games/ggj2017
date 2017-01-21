@@ -90,9 +90,10 @@ var ElementFactory = function (game) {
     this.factorRadar = function () {
         var sprite = _game.add.sprite(_game.world.width - 10, _game.world.height - 10, 'radar_ground');
         sprite.anchor.setTo(1, 1);
+        sprite.scale.setTo(0.5, 0.5);
         sprite.planet = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_planet');
         sprite.planet.anchor.setTo(0.5, 0.5);
-        sprite.planet.scale.setTo(0.33, 0.33);
+        sprite.planet.scale.setTo(0.25, 0.25);
 
         var fullWidth = _game.spawnBoundaries.maxX + Math.abs(_game.spawnBoundaries.minX);
         var fullHeight = _game.spawnBoundaries.maxY + Math.abs(_game.spawnBoundaries.minY);
@@ -123,7 +124,7 @@ var ElementFactory = function (game) {
                     var radY = radarHeight * relY;
                     var shipRadar = _game.add.sprite(this.position.x - radX, this.position.y - radY, 'radar_ship');
                     shipRadar.anchor.setTo(0.5, 0.5);
-                    shipRadar.scale.setTo(0.5, 0.5);
+                    shipRadar.scale.setTo(0.25, 0.25);
                     sprite.ships.push(shipRadar);
                 }
             }
