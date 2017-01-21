@@ -26,6 +26,8 @@ Game.prototype = {
         this.enemySpeed = 0;
         this.baseTime = this.game.time.totalElapsedSeconds();
         this.highscore = this.elementFactory.factorHighscore();
+        this.lastfire = 0;
+        this.cooldown = 1 * 1000; // seconds
     },
     update: function () {
         var timegone = (this.game.time.totalElapsedSeconds() - this.baseTime) < 0 ? 0 : (this.game.time.totalElapsedSeconds() - this.baseTime);
@@ -49,12 +51,12 @@ Game.prototype = {
         this.game.physics.arcade.collide(this.enemies, this.planet);
         this.game.physics.arcade.collide(this.bullets, this.enemies);
         for (var j = 0; j < this.enemies.length; j++) {
-          if (this.enemies[j].body !== null){this.enemies[j].moveForward(this.enemySpeed)}
-          else {
-          this.enemies.splice(j, 1);
-          console.log('Killed' + this.enemies[j]);
+            if (this.enemies[j].body !== null) {
+                this.enemies[j].moveForward(this.enemySpeed);
+            } else {
+                this.enemies.splice(j, 1);
+            }
         }
-      }
     },
     updateHealthBar: function () {
         if (this.planet.health < 0.5) {
@@ -74,7 +76,11 @@ Game.prototype = {
     },
     updateBullet: function () {
         for (var k = 0; k < this.bullets.length; k++) {
-            this.bullets[k].moveForward(this.bullets[k].bulletangle);
+            if (this.bullets[k].body !== null) {
+                this.bullets[k].moveForward(this.bullets[k].bulletangle);
+            } else {
+                this.bullets.splice(k, 1);
+            }
         }
     },
     generateShipIfNeeded: function () {
@@ -86,8 +92,11 @@ Game.prototype = {
         }
     },
     fireBullet: function () {
-        var bullet = this.elementFactory.factorBullet();
-        this.bullets.push(bullet);
+        if(new Date() - this.lastfire > this.cooldown) {
+            this.lastfire = new Date();
+            var bullet = this.elementFactory.factorBullet();
+            this.bullets.push(bullet);
+        }
     },
     createRandomEnemyPosition: function () {
         var point = {};

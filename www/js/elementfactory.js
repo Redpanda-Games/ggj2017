@@ -16,9 +16,9 @@ var ElementFactory = function (game) {
         sprite.dockedTime = 0;
         sprite.moveForward = function (speed) {
             if (!this.docked) {
-              if (this.body == null) {
-              return;
-            };
+                if (this.body == null) {
+                    return;
+                }
                 var angle = Math.atan2(_game.world.centerY - this.y, _game.world.centerX - this.x) * (180 / Math.PI);
                 this.angle = angle + 180;
                 _game.physics.arcade.velocityFromAngle(angle, speed * this.speedMultiplier, this.body.velocity);
@@ -50,7 +50,10 @@ var ElementFactory = function (game) {
             if (bullet !== null && ship !== null) {
                 ship.speedMultiplier = ship.speedMultiplier / 2;
                 console.log('langsamer');
-                if (ship.speed == null) {ship.kill()};
+                if (ship.speed == null) {
+                    ship.kill()
+                }
+                bullet.destroy();
             }
         });
         return sprite;
@@ -124,7 +127,7 @@ var ElementFactory = function (game) {
                 }
             }
         };
-        sprite.updateScanner = function() {
+        sprite.updateScanner = function () {
             this.scanner.angle += 3;
         };
         return sprite;
@@ -144,6 +147,12 @@ var ElementFactory = function (game) {
                 y: _game.world.centerY
             }, {x: _game.input.activePointer.x, y: _game.input.activePointer.y}) * (180 / Math.PI);
         bullet.moveForward = function (angle) {
+            if(_game.physics.arcade.distanceToXY(this.position, _game.world.centerX, _game.world.centerY) > _game.world.width * 2) {
+                this.destroy();
+            }
+            if (this.body == null) {
+                return;
+            }
             _game.physics.arcade.velocityFromAngle(angle, 400 * this.speedMultiplier, this.body.velocity);
         };
         return bullet;
