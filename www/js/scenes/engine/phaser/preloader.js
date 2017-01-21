@@ -16,9 +16,11 @@ Preloader.prototype = {
         this.load.image('energybar', 'img/Energie-Bar.png');
         this.load.image('healthbar', 'img/HP-BAR.png');
         this.load.image('game_background', 'img/game_background.png');
+        this.load.image('menu_background', 'img/menu_background.jpg');
+        this.load.image('menu_start_button', 'img/menu_start_button.png');
         this.load.image('charackter', 'img/Char.png');
         this.load.image('planet', 'img/planet.png');
-        this.load.image('ship_01', 'img/ship_01.png');
+        this.load.spritesheet('ship_01', 'img/ship_01.png', 400, 400, 8);
 
         this.load.image('bullet_inverse', 'img/bullet_inverse.png');
         this.load.image('bullet_increase', 'img/bullet_increase.png');

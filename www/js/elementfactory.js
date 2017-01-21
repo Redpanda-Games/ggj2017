@@ -7,6 +7,8 @@ var ElementFactory = function (game) {
         var sprite = _game.add.sprite(spawn.x, spawn.y, 'ship_01');
         sprite.anchor.setTo(0.5, 0.5);
         sprite.scale.setTo(0.5, 0.5);
+        sprite.animations.add('fly', [0,1,2,3,4,5,6,7]);
+        sprite.animations.play('fly', 12, true);
         _game.physics.arcade.enable(sprite);
         var radius = sprite.width / 2;
         sprite.body.setCircle(radius, radius, radius);
