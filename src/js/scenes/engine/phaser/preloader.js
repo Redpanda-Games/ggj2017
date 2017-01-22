@@ -18,6 +18,7 @@ Preloader.prototype = {
         this.load.image('radar_scanner', 'src/img/radar_scanner.png');
         this.load.image('background', 'src/img/background.jpg');
         this.load.image('credits', 'src/img/credits.jpg');
+        this.load.image('highscore', 'src/img/gravcore-highscore.png');
 
         this.load.image('menu_logo', 'src/img/gravcore-startscreen-logo.png');
         this.load.image('menu_holo', 'src/img/startmenue_holo.png');

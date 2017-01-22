@@ -219,7 +219,8 @@ var ElementFactory = function (game) {
     };
 
     this.factorHighscore = function () {
-        return _game.add.text(10, 10, "0", {
+        _game.add.sprite(_game.world.width-310, 10, 'highscore');
+        return _game.add.text(_game.world.width-160, 50, "0", {
             font: "22px Arial",
             fill: "#fff"
         });
