@@ -14,7 +14,7 @@ Credit.prototype = {
         this.keys.esc = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
     },
     update: function () {
-        if (this.keys.esc.isDown) {
+        if (this.keys.esc.isDown || this.game.input.activePointer.isDown) {
             this.game.state.clearCurrentState();
             this.game.state.start('Menu');
             return true;

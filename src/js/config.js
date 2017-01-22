@@ -10,14 +10,14 @@ var GlobalConfig = {
         'Game',
         'Menu',
         'Preloader',
-        'ScoreScreen'
+        'Intro'
     ],
     menuConfig: {
         entries: [
             {
                 title: '',
                 img: 'menu_start_button',
-                scene: 'Game'
+                scene: 'Intro'
             }/*,
              {
              title: 'Achivements',
@@ -43,6 +43,6 @@ var GlobalConfig = {
         'src/js/scenes/engine/phaser/credits.js',
         'src/js/scenes/engine/phaser/menu.js',
         'src/js/scenes/engine/phaser/preloader.js',
-        'src/js/scenes/engine/phaser/scorescreen.js'
+        'src/js/scenes/engine/phaser/intro.js'
     ]
 };

@@ -56,6 +56,8 @@ Preloader.prototype = {
         this.load.spritesheet('avatar', 'src/img/avatar_happy_kom.png', 600, 374);
         this.load.spritesheet('energie', 'src/img/lebenleiste.png', 600, 374);
         this.load.spritesheet('lifebar', 'src/img/energieleiste.png', 600, 374);
+
+        this.load.video('intro', 'src/video/intro.mp4');
     },
     create: function () {
         this.state.clearCurrentState();
