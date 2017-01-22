@@ -131,12 +131,12 @@ var ElementFactory = function (game) {
 
         hud.setLife = function (life) {
             if (life > 0) {
-                hud.lifeSprite.frame = Math.ceil(life / 10) - 1;
+                hud.lifeSprite.frame = Math.ceil(life / 10);
             }
         };
         hud.setEnergy = function (energy) {
             if (Math.ceil(energy / 5) <= 10) {
-                hud.energieSprite.frame = Math.ceil(energy / 5) - 1;
+                hud.energieSprite.frame = Math.ceil(energy / 5);
             }
         };
         hud.remove = function () {

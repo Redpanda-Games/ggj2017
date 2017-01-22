@@ -30,9 +30,9 @@ Preloader.prototype = {
         this.load.spritesheet('menu_start_button', 'src/img/menu_start_button.png', 900, 900);
         this.load.spritesheet('planet_dead', 'src/img/planet_explosion.png', 1000, 1000);
 
-        this.load.spritesheet('avatar', 'src/img/avatar_happy_kom.png', 600, 376);
-        this.load.spritesheet('energie', 'src/img/energieleiste.png', 600, 376);
-        this.load.spritesheet('lifebar', 'src/img/lebenleiste.png', 600, 376);
+        this.load.spritesheet('avatar', 'src/img/avatar_happy_kom.png', 600, 374);
+        this.load.spritesheet('energie', 'src/img/lebenleiste.png', 600, 374);
+        this.load.spritesheet('lifebar', 'src/img/energieleiste.png', 600, 374);
     },
     create: function () {
         this.state.clearCurrentState();
