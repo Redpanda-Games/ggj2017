@@ -10,6 +10,12 @@ Menu.prototype = {
         this.background_logo.anchor.setTo(0.5, 0.5);
         this.background_logo.width = this.game.world.width;
         this.background_logo.height = this.game.world.height;
+        this.creditBtn = this.add.sprite(this.game.world.width-380,this.game.world.height-70,'credit_button');
+        this.creditBtn.inputEnabled = true;
+        this.creditBtn.input.useHandCursor = true;
+        this.creditBtn.events.onInputDown.add(function(){
+            that.game.state.start('Credit');
+        }, this);
         var that = this;
         var style = {font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle"};
         var yPosition = 0;
