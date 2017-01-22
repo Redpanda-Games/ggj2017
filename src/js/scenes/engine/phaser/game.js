@@ -39,7 +39,6 @@ Game.prototype = {
         this.game.onPause.add(function () {
             this.game.state.start('Menu');
         }, this);
-        this.newSound();
         this.audio = {};
         for (var i = 0; i < 7; i++) {
             this.audio['ingame_01_0'+i]=this.game.add.audio('ingame_01_0'+i);
