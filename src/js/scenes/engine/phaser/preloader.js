@@ -19,9 +19,32 @@ Preloader.prototype = {
         this.load.image('menu_logo', 'src/img/gravcore-startscreen-logo.png');
         this.load.image('credit_button', 'src/img/gravcore-startscreen-team.png');
 
-        this.load.audio('attack', 'src/audio/laserattack.wav');
-        this.load.audio('flysound', 'src/audio/space_fly.wav');
-        this.load.audio('gameover', 'src/audio/gameover.wav');
+        //Phase 1 Normale Sounds
+        this.load.audio('ingame_01_01', ['src/audio/MUSIK_P1_01.mp3', 'src/audio/MUSIK_P1_01.ogg']);
+        this.load.audio('ingame_01_02', ['src/audio/MUSIK_P1_02.mp3', 'src/audio/MUSIK_P1_02.ogg']);
+        this.load.audio('ingame_01_03', ['src/audio/MUSIK_P1_03.mp3', 'src/audio/MUSIK_P1_03.ogg']);
+        this.load.audio('ingame_01_04', ['src/audio/MUSIK_P1_04.mp3', 'src/audio/MUSIK_P1_04.ogg']);
+        this.load.audio('ingame_01_05', ['src/audio/MUSIK_P1_05.mp3', 'src/audio/MUSIK_P1_05.ogg']);
+        this.load.audio('ingame_01_06', ['src/audio/MUSIK_P1_06.mp3', 'src/audio/MUSIK_P1_06.ogg']);
+        this.load.audio('ingame_01_07', ['src/audio/MUSIK_P1_07.mp3', 'src/audio/MUSIK_P1_07.ogg']);
+
+        //Phase 2 Wenn die Schiffe angedockt sind
+        this.load.audio('ingame_02_01', ['src/audio/MUSIK_P2_01.mp3', 'src/audio/MUSIK_P2_01.ogg']);
+        this.load.audio('ingame_02_02', ['src/audio/MUSIK_P2_02.mp3', 'src/audio/MUSIK_P2_02.ogg']);
+        this.load.audio('ingame_02_03', ['src/audio/MUSIK_P2_03.mp3', 'src/audio/MUSIK_P2_03.ogg']);
+        this.load.audio('ingame_02_04', ['src/audio/MUSIK_P2_04.mp3', 'src/audio/MUSIK_P2_04.ogg']);
+        this.load.audio('ingame_02_05', ['src/audio/MUSIK_P2_05.mp3', 'src/audio/MUSIK_P2_05.ogg']);
+        this.load.audio('ingame_02_06', ['src/audio/MUSIK_P2_06.mp3', 'src/audio/MUSIK_P2_06.ogg']);
+        this.load.audio('ingame_02_07', ['src/audio/MUSIK_P2_07.mp3', 'src/audio/MUSIK_P2_07.ogg']);
+
+        //Phase 3
+        this.load.audio('ingame_03_01', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/MUSIK_P3_01.ogg']);
+        this.load.audio('ingame_03_02', ['src/audio/MUSIK_P3_02.mp3', 'src/audio/MUSIK_P3_02.ogg']);
+        this.load.audio('ingame_03_03', ['src/audio/MUSIK_P3_03.mp3', 'src/audio/MUSIK_P3_03.ogg']);
+        this.load.audio('ingame_03_04', ['src/audio/MUSIK_P3_04.mp3', 'src/audio/MUSIK_P3_04.ogg']);
+        this.load.audio('ingame_03_05', ['src/audio/MUSIK_P3_05.mp3', 'src/audio/MUSIK_P3_05.ogg']);
+        this.load.audio('ingame_03_06', ['src/audio/MUSIK_P3_06.mp3', 'src/audio/MUSIK_P3_06.ogg']);
+        this.load.audio('ingame_03_07', ['src/audio/MUSIK_P3_07.mp3', 'src/audio/MUSIK_P3_07.ogg']);
 
         this.load.spritesheet('planet', 'src/img/planet.png', 250, 250);
         this.load.spritesheet('ship_01', 'src/img/ship_01.png', 250, 250);
