@@ -28,7 +28,7 @@ Game.prototype = {
         this.enemies = [];
         this.bullets = [];
         this.maxEnemyCount = 0;
-        this.baseEnemySpeed = 300;
+        this.baseEnemySpeed = 500;
         this.enemySpeed = 0;
         this.baseTime = this.game.time.totalElapsedSeconds();
         this.highscore = this.elementFactory.factorHighscore();
@@ -75,7 +75,7 @@ Game.prototype = {
         for (var i = 0; i < this.enemies.length; i++) {
             if (this.enemies[i].drainLife) {
                 this.enemies[i].drainLife = false;
-                this.game.planet.health -= 0.5;
+                this.game.planet.health--;
                 this.hud.update(this.game.planet.health);
             }
         }
