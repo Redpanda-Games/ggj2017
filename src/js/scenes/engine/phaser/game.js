@@ -36,6 +36,36 @@ Game.prototype = {
         this.cooldown = 0.25 * 1000; // seconds
         this.lastship = 0;
         this.shipCooldown = 150;
+        this.newSound();
+    },
+    newSound: function() {
+        console.log('new sound');
+        this.gameSound = this.game.add.audio(this.selectSound());
+        this.game.sound.setDecodedCallback([this.gameSound],function(){
+            console.log('decode');
+            this.gameSound.play();
+            this.gameSound.onStop.add(function(){
+                console.log('soundstop');
+                this.newSound();
+            }, this);
+        },this);
+    },
+    selectSound: function(){
+        var enemConnectedCount = 0;
+        var ret = '';
+        for (var j = 0; j < this.enemies.length; j++) {
+            if (this.enemies[j].docked){
+                enemConnectedCount++;
+            }
+        }
+        if(enemConnectedCount<=1) {
+            ret = 'ingame_01_0' + Math.ceil(Math.random()*6);
+        } else if (enemConnectedCount <= 5) {
+            ret = 'ingame_02_0' + Math.ceil(Math.random()*6);
+        } else {
+            ret = 'ingame_03_0' + Math.ceil(Math.random()*6);
+        }
+        return ret;
     },
     update: function () {
         var timegone = (this.game.time.totalElapsedSeconds() - this.baseTime) < 0 ? 0 : (this.game.time.totalElapsedSeconds() - this.baseTime);
@@ -81,6 +111,7 @@ Game.prototype = {
         }
     },
     gameOver: function () {
+        this.gameSound ? this.gameSound.destroy() : null;
         this.hud.remove();
         this.radar.remove();
         this.highscore.remove();
