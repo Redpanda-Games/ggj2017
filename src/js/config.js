@@ -19,14 +19,14 @@ var GlobalConfig = {
                 img: 'menu_start_button',
                 scene: 'Game'
             }/*,
-            {
-                title: 'Achivements',
-                scene: 'Achivement'
-            },
-            {
-                title: 'Credits',
-                scene: 'Credit'
-            }*/
+             {
+             title: 'Achivements',
+             scene: 'Achivement'
+             },
+             {
+             title: 'Credits',
+             scene: 'Credit'
+             }*/
         ],
         backgroundImage: null
     },

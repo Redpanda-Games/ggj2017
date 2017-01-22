@@ -20,9 +20,9 @@ Preloader.prototype = {
         this.load.image('credit_button', 'src/img/gravcore-startscreen-team.png');
 
         this.load.audio('attack', 'src/audio/laserattack.wav');
-        this.load.audio('flysound','src/audio/space_fly.wav');
-        this.load.audio('gameover','src/audio/gameover.wav');
-         
+        this.load.audio('flysound', 'src/audio/space_fly.wav');
+        this.load.audio('gameover', 'src/audio/gameover.wav');
+
         this.load.spritesheet('planet', 'src/img/planet.png', 250, 250);
         this.load.spritesheet('ship_01', 'src/img/ship_01.png', 250, 250);
         this.load.spritesheet('bullet_inverse', 'src/img/bullet_inverse.png', 350, 350);

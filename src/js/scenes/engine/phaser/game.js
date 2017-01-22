@@ -35,7 +35,7 @@ Game.prototype = {
         this.lastfire = 0;
         this.cooldown = 0.25 * 1000; // seconds
         this.lastship = 0;
-        this.shipCooldown = 100;
+        this.shipCooldown = 150;
     },
     update: function () {
         var timegone = (this.game.time.totalElapsedSeconds() - this.baseTime) < 0 ? 0 : (this.game.time.totalElapsedSeconds() - this.baseTime);
@@ -94,7 +94,8 @@ Game.prototype = {
         this.game.planet.animations.add('death', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 16);
         this.game.planet.animations.play('death');
         var _this = this;
-        this.game.planet.regenerate = function() {};
+        this.game.planet.regenerate = function () {
+        };
         this.game.planet.animations.currentAnim.onComplete.add(function () {
             _this.game.state.start('Menu');
         });
@@ -157,7 +158,7 @@ Game.prototype = {
             }
         }
     },
-    createStarFilter: function() {
+    createStarFilter: function () {
         var fragmentSrc = [
             "precision mediump float;",
 
@@ -204,6 +205,6 @@ Game.prototype = {
         this.starSprite.width = this.game.world.width;
         this.starSprite.height = this.game.world.height;
 
-        this.starSprite.filters = [ this.filter ];
+        this.starSprite.filters = [this.filter];
     }
 };
