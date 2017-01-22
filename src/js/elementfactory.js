@@ -213,7 +213,7 @@ var ElementFactory = function (game) {
     this.factorBullet = function (type) {
         var bullet = _game.add.sprite(_game.world.centerX, _game.world.centerY, 'bullet_' + type);
         bullet.anchor.setTo(0.5, 0.5);
-        bullet.scale.setTo(0.25, 0.25);
+        bullet.scale.setTo(0.4, 0.4);
         bullet.animations.add('loop', [0, 1, 2], 9);
         _game.physics.arcade.enable(bullet);
         var radius = bullet.width / 2;
