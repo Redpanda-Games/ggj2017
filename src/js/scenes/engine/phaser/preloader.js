@@ -20,6 +20,7 @@ Preloader.prototype = {
         this.load.image('credits', 'src/img/credits.jpg');
 
         this.load.image('menu_logo', 'src/img/gravcore-startscreen-logo.png');
+        this.load.image('credit_button', 'src/img/gravcore-startscreen-team.png');
 
         this.load.image('charackter', 'src/img/Char.png');
 
