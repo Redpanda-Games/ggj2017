@@ -28,6 +28,9 @@ Menu.prototype = {
                     button.height = this.game.world.height * 0.9;
                     button.width = button.width * (button.height / heightOld);
                     button.anchor.setTo(0, 1);
+                    button.btnSound = this.game.add.audio('menue_button');
+                    that.game.sound.setDecodedCallback([button.btnSound], function(){
+                    },this);
                     button.animations.add('hover', [0, 1, 2], 6);
                     button.animations.add('out', [0, 1, 2], 3);
                     button.inputEnabled = true;
@@ -39,10 +42,14 @@ Menu.prototype = {
                     }, this);
                     button.events.onInputOver.add(function () {
                         button.animations.stop(null, true);
+                        button.btnSound.stop();
+                        button.btnSound.loop = true;
+                        button.btnSound.play();
                         button.animations.play('hover', null, true);
                     }, this);
                     button.events.onInputOut.add(function () {
                         button.animations.stop(null, true);
+                        button.btnSound.stop();
                         button.animations.play('out', null, true);
                     }, this);
 

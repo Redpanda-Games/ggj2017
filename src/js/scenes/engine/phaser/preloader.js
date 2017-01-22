@@ -46,6 +46,17 @@ Preloader.prototype = {
         this.load.audio('ingame_03_05', ['src/audio/MUSIK_P3_06.mp3', 'src/audio/MUSIK_P3_06.ogg']);
         this.load.audio('ingame_03_06', ['src/audio/MUSIK_P3_07.mp3', 'src/audio/MUSIK_P3_07.ogg']);
 
+        //Sound-Design
+        this.load.audio('alien_dock', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_alien_dock.mp3']);
+        this.load.audio('alien_suck', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_aliewn_planet_sucker.mp3']);
+        this.load.audio('alien_explode', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_Explosion.mp3']);
+        this.load.audio('planet_exlode', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_Explosion_planet']);
+        this.load.audio('gravity_minus', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_gravity_minus.mp3']);
+        this.load.audio('gravity_plus', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_gravity_plus.mp3']);
+        this.load.audio('healtbar', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_healthbar.mp3']);
+        this.load.audio('load_energy', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_load_energy.mp3']);
+        this.load.audio('menue_button', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_menue_button.mp3']);
+
         this.load.spritesheet('planet', 'src/img/planet.png', 250, 250);
         this.load.spritesheet('ship_01', 'src/img/ship_01.png', 250, 250);
         this.load.spritesheet('bullet_inverse', 'src/img/bullet_inverse.png', 350, 350);
