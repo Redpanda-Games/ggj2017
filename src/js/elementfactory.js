@@ -102,7 +102,7 @@ var ElementFactory = function (game) {
         sprite.energy = 10;
         sprite.isPlanet = true;
         sprite.lastRegen = 0;
-        sprite.cooldown = 1500;
+        sprite.cooldown = 1000;
         sprite.regenerate = function () {
             if (new Date() - this.lastRegen > this.cooldown && this.energy < 50) {
                 this.lastRegen = new Date();
@@ -238,10 +238,14 @@ var ElementFactory = function (game) {
 
     this.factorHighscore = function () {
         var sprite = _game.add.sprite(_game.world.width - 310, 10, 'highscore');
-        sprite.text = _game.add.text(_game.world.width - 160, 50, "0", {
-            font: "48px Geo",
-            fill: "#78bcd9"
+        sprite.text = _game.add.text(0, 0, "0", {
+            font: "36px Raleway",
+            fill: "#ffffff",
+            boundsAlignH: "center",
+            boundsAlignV: "middle",
+            align: "center"
         });
+        sprite.text.setTextBounds(sprite.position.x, sprite.position.y + sprite.height, sprite.width, sprite.height);
         sprite.remove = function () {
             this.text.destroy();
             this.destroy();
