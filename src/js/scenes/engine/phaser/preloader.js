@@ -5,26 +5,19 @@ var Preloader = function (game) {
 };
 Preloader.prototype = {
     preload: function () {
-        this.background = this.add.sprite(0, 0, 'preloaderBackground');
+        this.background = this.add.sprite(0, 0, 'background');
         this.preloadBar = this.add.sprite(400, 500, 'preloaderBar');
         this.load.setPreloadSprite(this.preloadBar);
-
-        this.load.image('energybar', 'src/img/Energie-Bar.png');
-        this.load.image('healthbar', 'src/img/HP-BAR.png');
 
         this.load.image('radar_ground', 'src/img/radar_background.png');
         this.load.image('radar_planet', 'src/img/radar_planet.png');
         this.load.image('radar_ship', 'src/img/radar_ship.png');
         this.load.image('radar_scanner', 'src/img/radar_scanner.png');
-        this.load.image('background', 'src/img/background.jpg');
         this.load.image('credits', 'src/img/credits.jpg');
         this.load.image('highscore', 'src/img/gravcore-highscore.png');
 
         this.load.image('menu_logo', 'src/img/gravcore-startscreen-logo.png');
-        this.load.image('menu_holo', 'src/img/startmenue_holo.png');
         this.load.image('credit_button', 'src/img/gravcore-startscreen-team.png');
-
-        this.load.image('charackter', 'src/img/Char.png');
 
         this.load.audio('attack', 'src/audio/laserattack.wav');
         this.load.audio('flysound','src/audio/space_fly.wav');
@@ -35,7 +28,7 @@ Preloader.prototype = {
         this.load.spritesheet('bullet_inverse', 'src/img/bullet_inverse.png', 350, 350);
         this.load.spritesheet('bullet_increase', 'src/img/bullet_increase.png', 350, 350);
         this.load.spritesheet('menu_start_button', 'src/img/menu_start_button.png', 900, 900);
-        this.load.spritesheet('planet_dead', 'src/img/planet_zerstoerung_500.png', 1000, 1000);
+        this.load.spritesheet('planet_dead', 'src/img/planet_explosion.png', 1000, 1000);
 
         this.load.spritesheet('avatar', 'src/img/avatar_happy_kom.png', 600, 376);
         this.load.spritesheet('energie', 'src/img/energieleiste.png', 600, 376);

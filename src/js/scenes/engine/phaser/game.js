@@ -2,12 +2,12 @@ var Game = function (game) {
     this.debug = false;
     this.filter = null;
     this.starSprite = null;
-    this.gameOver = false;
 };
 Game.prototype = {
     create: function () {
         var width = this.game.world.width;
         var height = this.game.world.height;
+        this.game.gameOver = false;
         this.game.spawnBoundaries = {};
         this.game.spawnBoundaries.minX = width / 2 * -1;
         this.game.spawnBoundaries.maxX = width * 1.5;
@@ -23,7 +23,7 @@ Game.prototype = {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.elementFactory = new ElementFactory(this.game);
         this.game.planet = this.elementFactory.factorPlanet();
-        this.healthBar = this.elementFactory.factorHealthBar();
+        this.hud = this.elementFactory.factorHud();
         this.radar = this.elementFactory.factorRadar();
         this.enemies = [];
         this.bullets = [];
@@ -34,24 +34,26 @@ Game.prototype = {
         this.highscore = this.elementFactory.factorHighscore();
         this.lastfire = 0;
         this.cooldown = 0.25 * 1000; // seconds
+        this.lastship = 0;
+        this.shipCooldown = 100;
     },
     update: function () {
         var timegone = (this.game.time.totalElapsedSeconds() - this.baseTime) < 0 ? 0 : (this.game.time.totalElapsedSeconds() - this.baseTime);
-        this.maxEnemyCount = Math.min(1 + Math.round(timegone / 10), 50);
+        this.maxEnemyCount = Math.min(1 + Math.round(timegone / 10), 25);
         this.enemySpeed = this.baseEnemySpeed + timegone;
         this.generateShipIfNeeded();
         this.fireBullet();
         this.updateEnemies();
         this.updateBullet();
         this.updateRadar();
-        this.updateHealthBar();
+        this.updateHud();
         this.updateHighscore();
         this.filter.update(this.game.input.mousePointer);
         this.game.planet.regenerate();
     },
     updateHighscore: function () {
         this.game.highscore += this.game.time.elapsed / 1000;
-        this.highscore.setText(Math.floor(this.game.highscore).toString());
+        this.highscore.text.setText(Math.floor(this.game.highscore).toString());
     },
     updateEnemies: function () {
         this.game.physics.arcade.collide(this.enemies, this.game.planet);
@@ -64,29 +66,38 @@ Game.prototype = {
             }
         }
     },
-    updateHealthBar: function () {
-        if (this.game.planet.health <= 0 && !this.gameOver) {
-            this.gameOver = true;
-            this.game.planet.destroy();
-            this.game.planet = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'planet_dead');
-            this.game.planet.anchor.setTo(0.5, 0.5);
-            this.game.planet.animations.add('death', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 6);
-            this.game.planet.animations.play('death');
-            var _this = this;
-            this.game.planet.regenerate = function() {};
-            this.game.planet.animations.currentAnim.onComplete.add(function () {
-                _this.game.state.start('Menu');
-            });
+    updateHud: function () {
+        if (this.game.planet.health <= 0 && !this.game.gameOver) {
+            this.gameOver();
         }
-        this.healthBar.setLife(this.game.planet.health);
-        this.healthBar.setEnergy(this.game.planet.energy);
+        this.hud.setLife(this.game.planet.health);
+        this.hud.setEnergy(this.game.planet.energy);
         for (var i = 0; i < this.enemies.length; i++) {
             if (this.enemies[i].drainLife) {
                 this.enemies[i].drainLife = false;
                 this.game.planet.health -= 0.5;
-                this.healthBar.update(this.game.planet.health);
+                this.hud.update(this.game.planet.health);
             }
         }
+    },
+    gameOver: function () {
+        this.hud.remove();
+        this.radar.remove();
+        this.highscore.remove();
+        this.game.gameOver = true;
+        for (var i = 0; i < this.enemies.length; i++) {
+            this.enemies[i].destroy();
+        }
+        this.game.planet.destroy();
+        this.game.planet = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'planet_dead');
+        this.game.planet.anchor.setTo(0.5, 0.5);
+        this.game.planet.animations.add('death', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 16);
+        this.game.planet.animations.play('death');
+        var _this = this;
+        this.game.planet.regenerate = function() {};
+        this.game.planet.animations.currentAnim.onComplete.add(function () {
+            _this.game.state.start('Menu');
+        });
     },
     updateRadar: function () {
         this.radar.updateScanner();
@@ -102,11 +113,10 @@ Game.prototype = {
         }
     },
     generateShipIfNeeded: function () {
-        if (this.enemies.length < this.maxEnemyCount) {
-            for (var i = 0; i < this.maxEnemyCount - this.enemies.length; i++) {
-                var ship = this.elementFactory.factorShip(this.createRandomEnemyPosition());
-                this.enemies.push(ship);
-            }
+        if (new Date() - this.lastship > this.shipCooldown && this.enemies.length < this.maxEnemyCount && !this.game.gameOver) {
+            var ship = this.elementFactory.factorShip(this.createRandomEnemyPosition());
+            this.enemies.push(ship);
+            this.lastship = new Date();
         }
     },
     fireBullet: function () {

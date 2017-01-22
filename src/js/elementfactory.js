@@ -97,7 +97,7 @@ var ElementFactory = function (game) {
         sprite.energy = 10;
         sprite.isPlanet = true;
         sprite.lastRegen = 0;
-        sprite.cooldown = 500;
+        sprite.cooldown = 2000;
         sprite.regenerate = function () {
             if (new Date() - this.lastRegen > this.cooldown) {
                 this.lastRegen = new Date();
@@ -107,7 +107,7 @@ var ElementFactory = function (game) {
         return sprite;
     };
 
-    this.factorHealthBar = function () {
+    this.factorHud = function () {
         var hud = _game.add.sprite(40, _game.world.height-10, 'avatar');
         hud.anchor.setTo(0, 1);
         hud.lifeSprite = _game.add.sprite(40, _game.world.height-10, 'lifebar');
@@ -134,30 +134,34 @@ var ElementFactory = function (game) {
                 hud.energieSprite.frame = Math.ceil(energy / 10) - 1;
             }
         };
-
+        hud.remove = function () {
+            this.lifeSprite.destroy();
+            this.energieSprite.destroy();
+            this.destroy();
+        };
         return hud;
     };
 
     this.factorRadar = function () {
         var sprite = _game.add.sprite(_game.world.width - 10, _game.world.height - 10, 'radar_ground');
         sprite.anchor.setTo(1, 1);
-        sprite.scale.setTo(0.3, 0.3);
+        sprite.scale.setTo(0.4, 0.4);
         sprite.planet = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_planet');
         sprite.planet.anchor.setTo(0.5, 0.5);
         var planetScaleFactor = (_game.planet.width / _game.world.width) / (sprite.planet.width / sprite.width);
         sprite.planet.scale.setTo(planetScaleFactor, planetScaleFactor);
         sprite.scanner = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_scanner');
         sprite.scanner.anchor.setTo(0.5, 0.5);
-        sprite.scanner.scale.setTo(0.36, 0.36);
+        sprite.scanner.scale.setTo(0.45, 0.45);
 
         var fullWidth = _game.spawnBoundaries.maxX + Math.abs(_game.spawnBoundaries.minX);
         var fullHeight = _game.spawnBoundaries.maxY + Math.abs(_game.spawnBoundaries.minY);
 
-        var graphics = _game.add.graphics();
-        graphics.lineStyle(1, 0xFFFFFF, 1);
+        sprite.camera = _game.add.graphics();
+        sprite.camera.lineStyle(1, 0xFFFFFF, 1);
         var camWidth = (_game.camera.width / fullWidth) * sprite.width;
         var camHeight = (_game.camera.height / fullHeight) * sprite.height;
-        graphics.drawRect(sprite.position.x - (sprite.width + camWidth) / 2, sprite.position.y - (sprite.height + camHeight) / 2, camWidth, camHeight);
+        sprite.camera.drawRect(sprite.position.x - (sprite.width + camWidth) / 2, sprite.position.y - (sprite.height + camHeight) / 2, camWidth, camHeight);
 
         sprite.ships = [];
         sprite.updateShips = function (ships) {
@@ -186,6 +190,15 @@ var ElementFactory = function (game) {
         };
         sprite.updateScanner = function () {
             this.scanner.angle += 3;
+        };
+        sprite.remove = function () {
+            this.scanner.destroy();
+            this.planet.destroy();
+            this.camera.destroy();
+            for (var i = 0; i < this.ships.length; i++) {
+                this.ships[i].destroy();
+            }
+            this.destroy();
         };
         return sprite;
     };
@@ -219,11 +232,16 @@ var ElementFactory = function (game) {
     };
 
     this.factorHighscore = function () {
-        _game.add.sprite(_game.world.width-310, 10, 'highscore');
-        return _game.add.text(_game.world.width-160, 50, "0", {
-            font: "22px Arial",
-            fill: "#fff"
+        var sprite = _game.add.sprite(_game.world.width-310, 10, 'highscore');
+        sprite.text = _game.add.text(_game.world.width-160, 50, "0", {
+            font: "48px Geo",
+            fill: "#78bcd9"
         });
+        sprite.remove = function () {
+            this.text.destroy();
+            this.destroy();
+        };
+        return sprite;
     };
     _init();
 };

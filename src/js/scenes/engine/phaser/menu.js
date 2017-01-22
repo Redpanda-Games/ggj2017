@@ -13,7 +13,6 @@ Menu.prototype = {
         this.creditBtn = this.add.sprite(this.game.world.width-380,this.game.world.height-70,'credit_button');
         this.creditBtn.inputEnabled = true;
         this.creditBtn.input.useHandCursor = true;
-        this.add.sprite(this.game.world.width*0.45, 30, 'menu_holo');
         this.creditBtn.events.onInputDown.add(function(){
             that.game.state.start('Credit');
         }, this);
