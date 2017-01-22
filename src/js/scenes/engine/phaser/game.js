@@ -40,7 +40,7 @@ Game.prototype = {
     update: function () {
         var timegone = (this.game.time.totalElapsedSeconds() - this.baseTime) < 0 ? 0 : (this.game.time.totalElapsedSeconds() - this.baseTime);
         this.maxEnemyCount = Math.min(1 + Math.round(timegone / 10), 25);
-        this.enemySpeed = this.baseEnemySpeed + timegone;
+        this.enemySpeed = this.baseEnemySpeed + Math.round(timegone / 2.5);
         this.generateShipIfNeeded();
         this.fireBullet();
         this.updateEnemies();
