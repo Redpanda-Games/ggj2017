@@ -33,6 +33,11 @@ Preloader.prototype = {
         this.load.spritesheet('bullet_inverse', 'src/img/bullet_inverse.png', 350, 350);
         this.load.spritesheet('bullet_increase', 'src/img/bullet_increase.png', 350, 350);
         this.load.spritesheet('menu_start_button', 'src/img/menu_start_button.png', 900, 900);
+        this.load.spritesheet('planet_dead', 'src/img/planet_zerstoerung_500.png', 1000, 1000);
+
+        this.load.spritesheet('avatar', 'src/img/avatar_happy_kom.png', 600, 376);
+        this.load.spritesheet('energie', 'src/img/energieleiste.png', 600, 376);
+        this.load.spritesheet('lifebar', 'src/img/lebenleiste.png', 600, 376);
     },
     create: function () {
         this.state.clearCurrentState();

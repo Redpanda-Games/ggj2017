@@ -66,7 +66,7 @@ var ElementFactory = function (game) {
                 ship.drainInterval = setInterval(function () {
                     ship.drainLife = ship.docked;
                     ship.animations.play('attack', null, false);
-                }, 2000);
+                }, 800);
             }
             if (bullet !== null && ship !== null) {
                 if (bullet.multiplier < 0 && ship.docked) {
@@ -97,9 +97,10 @@ var ElementFactory = function (game) {
         sprite.energy = 10;
         sprite.isPlanet = true;
         sprite.lastRegen = 0;
-        sprite.cooldown = 3 * 1000;
+        sprite.cooldown = 500;
         sprite.regenerate = function () {
             if (new Date() - this.lastRegen > this.cooldown) {
+                this.lastRegen = new Date();
                 this.energy++;
             }
         };
@@ -107,28 +108,47 @@ var ElementFactory = function (game) {
     };
 
     this.factorHealthBar = function () {
-        var text = _game.add.text(_game.world.width - 50, 10, '100', {
-            font: "22px Arial",
-            fill: "#fff"
-        });
-        return {
-            update: function (health) {
-                text.setText(health);
+        var hud = _game.add.sprite(40, _game.world.height-10, 'avatar');
+        hud.anchor.setTo(0, 1);
+        hud.lifeSprite = _game.add.sprite(40, _game.world.height-10, 'lifebar');
+        hud.lifeSprite.anchor.setTo(0, 1);
+        hud.energieSprite = _game.add.sprite(40, _game.world.height-10, 'energie');
+        hud.energieSprite.anchor.setTo(0, 1);
+        var heightOld = hud.height;
+        hud.height = _game.world.height*0.4;
+        hud.width = hud.width * (hud.height/heightOld);
+
+        hud.lifeSprite.height = _game.world.height*0.4;
+        hud.lifeSprite.width = hud.lifeSprite.width * (hud.lifeSprite.height/heightOld);
+
+        hud.energieSprite.height = _game.world.height*0.4;
+        hud.energieSprite.width = hud.energieSprite.width * (hud.energieSprite.height/heightOld);
+
+        hud.setLife = function(life) {
+            if(life>0) {
+                hud.lifeSprite.frame = Math.ceil(life/10)-1;
             }
-        }
+        };
+        hud.setEnergy = function(energy) {
+            if(Math.ceil(energy / 10) <= 10) {
+                hud.energieSprite.frame = Math.ceil(energy / 10) - 1;
+            }
+        };
+
+        return hud;
     };
 
     this.factorRadar = function () {
         var sprite = _game.add.sprite(_game.world.width - 10, _game.world.height - 10, 'radar_ground');
         sprite.anchor.setTo(1, 1);
-        sprite.scale.setTo(0.4, 0.4);
+        sprite.scale.setTo(0.3, 0.3);
         sprite.planet = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_planet');
         sprite.planet.anchor.setTo(0.5, 0.5);
         var planetScaleFactor = (_game.planet.width / _game.world.width) / (sprite.planet.width / sprite.width);
         sprite.planet.scale.setTo(planetScaleFactor, planetScaleFactor);
         sprite.scanner = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_scanner');
         sprite.scanner.anchor.setTo(0.5, 0.5);
-        sprite.scanner.scale.setTo(0.46, 0.46);
+        sprite.scanner.scale.setTo(0.36, 0.36);
 
         var fullWidth = _game.spawnBoundaries.maxX + Math.abs(_game.spawnBoundaries.minX);
         var fullHeight = _game.spawnBoundaries.maxY + Math.abs(_game.spawnBoundaries.minY);

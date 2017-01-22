@@ -2,6 +2,7 @@ var Game = function (game) {
     this.debug = false;
     this.filter = null;
     this.starSprite = null;
+    this.gameOver = false;
 };
 Game.prototype = {
     create: function () {
@@ -64,10 +65,21 @@ Game.prototype = {
         }
     },
     updateHealthBar: function () {
-        if (this.game.planet.health <= 0) {
-            this.game.state.start('Menu');
+        if (this.game.planet.health <= 0 && !this.gameOver) {
+            this.gameOver = true;
+            this.game.planet.destroy();
+            this.game.planet = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'planet_dead');
+            this.game.planet.anchor.setTo(0.5, 0.5);
+            this.game.planet.animations.add('death', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 6);
+            this.game.planet.animations.play('death');
+            var _this = this;
+            this.game.planet.regenerate = function() {};
+            this.game.planet.animations.currentAnim.onComplete.add(function () {
+                _this.game.state.start('Menu');
+            });
         }
-        this.healthBar.update(this.game.planet.health);
+        this.healthBar.setLife(this.game.planet.health);
+        this.healthBar.setEnergy(this.game.planet.energy);
         for (var i = 0; i < this.enemies.length; i++) {
             if (this.enemies[i].drainLife) {
                 this.enemies[i].drainLife = false;
