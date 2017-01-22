@@ -10,7 +10,8 @@ var ElementFactory = function (game) {
         sprite.animations.add('fly', [0, 1, 2, 3, 4, 5, 6, 7], 12);
         sprite.animations.add('dock', [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], 12);
         sprite.animations.add('attack', [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33], 24);
-        sprite.animations.add('death-push', [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48], 12); // 15
+        sprite.animations.add('death-push', [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48], 12);
+        sprite.animations.add('death-pull', [49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63], 12);
         sprite.animations.play('fly', null, true);
         _game.physics.arcade.enable(sprite);
         var radius = sprite.width / 2;
@@ -56,17 +57,21 @@ var ElementFactory = function (game) {
                 ship.docked = true;
                 ship.dockedTime = new Date();
                 ship.drainLife = true;
-                if (ship.speedMultiplier > 2) {
-                    planet.health--;
-                }
-                if (ship.speedMultiplier > 1) {
-                    ship.kill();
-                }
-                ship.speedMultiplier = 0;
                 ship.drainInterval = setInterval(function () {
                     ship.drainLife = ship.docked;
                     ship.animations.play('attack', null, false);
                 }, 800);
+                if (ship.speedMultiplier > 2) {
+                    planet.health--;
+                }
+                if (ship.speedMultiplier > 1) {
+                    clearInterval(ship.drainInterval);
+                    ship.animations.play('death-pull', null, false);
+                    ship.animations.currentAnim.onComplete.add(function () {
+                        ship.kill();
+                    });
+                }
+                ship.speedMultiplier = 0;
             }
             if (bullet !== null && ship !== null) {
                 if (bullet.multiplier < 0 && ship.docked) {
@@ -97,7 +102,7 @@ var ElementFactory = function (game) {
         sprite.energy = 10;
         sprite.isPlanet = true;
         sprite.lastRegen = 0;
-        sprite.cooldown = 2000;
+        sprite.cooldown = 1000;
         sprite.regenerate = function () {
             if (new Date() - this.lastRegen > this.cooldown) {
                 this.lastRegen = new Date();
