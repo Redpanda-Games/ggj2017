@@ -36,19 +36,24 @@ Game.prototype = {
         this.cooldown = 0.25 * 1000; // seconds
         this.lastship = 0;
         this.shipCooldown = 150;
-        this.newSound();
+        this.audio = {};
+        for (var i = 0; i < 7; i++) {
+            this.audio['ingame_01_0'+i]=this.game.add.audio('ingame_01_0'+i);
+            this.audio['ingame_02_0'+i]=this.game.add.audio('ingame_02_0'+i);
+            this.audio['ingame_03_0'+i]=this.game.add.audio('ingame_03_0'+i);
+        }
+        console.log(this.audio);
+        this.game.sound.setDecodedCallback(Object.values(this.audio),this.newSound,this);
     },
     newSound: function() {
         console.log('new sound');
-        this.gameSound = this.game.add.audio(this.selectSound());
-        this.game.sound.setDecodedCallback([this.gameSound],function(){
-            console.log('decode');
-            this.gameSound.play();
-            this.gameSound.onStop.add(function(){
-                console.log('soundstop');
-                this.newSound();
-            }, this);
-        },this);
+        this.gameSound = this.audio[this.selectSound()];
+        this.gameSound.loop = false;
+        this.gameSound.play();
+        this.gameSound.onStop.add(function(){
+            console.log('soundstop');
+            this.newSound();
+        }, this);
     },
     selectSound: function(){
         var enemConnectedCount = 0;
@@ -65,6 +70,7 @@ Game.prototype = {
         } else {
             ret = 'ingame_03_0' + Math.ceil(Math.random()*6);
         }
+        console.log(ret);
         return ret;
     },
     update: function () {
