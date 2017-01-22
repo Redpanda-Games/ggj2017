@@ -39,25 +39,44 @@ Game.prototype = {
         this.game.onPause.add(function () {
             this.game.state.start('Menu');
         }, this);
-        this.audio = {};
-        for (var i = 0; i < 7; i++) {
-            this.audio['ingame_01_0'+i]=this.game.add.audio('ingame_01_0'+i);
-            this.audio['ingame_02_0'+i]=this.game.add.audio('ingame_02_0'+i);
-            this.audio['ingame_03_0'+i]=this.game.add.audio('ingame_03_0'+i);
-        }
-        console.log(this.audio);
-        this.game.sound.setDecodedCallback(Object.values(this.audio),this.newSound,this);
+
+        this.total = 0;
+        this.timer = this.game.time.create(false);
+        this.updateSound();
+
+        this.prepareSound();
+        this.newSound();
     },
     newSound: function() {
         console.log('new sound');
-        this.gameSound = this.audio[this.selectSound()];
-        this.gameSound.loop = false;
-        this.gameSound.play();
-        this.gameSound.onStop.add(function(){
-            console.log('soundstop');
-            this.newSound();
-        }, this);
+            console.log('decode');
+            this.tempsound = this.prepareSound();
+            this.tempsound.play();
+            this.prepareSound();
+            console.log('sound ready to play');
+            this.tempsound.onStop.add(function(){
+                console.log('soundstop');
+            }, this);
+
     },
+
+    prepareSound: function() {
+
+        this.gameSound = this.game.add.audio(this.selectSound());
+        this.game.sound.setDecodedCallback([this.gameSound], function(){
+            console.log('sound get decoded');
+        },this);
+        return this.gameSound;
+
+    },
+
+    updateSound: function() {
+        this.timer.loop(7111, this.newSound, this);
+        console.log('test');
+        //this.timer.loop(7111, function(){console.log('loop')}, this);
+        this.timer.start();
+    },
+
     selectSound: function(){
         var enemConnectedCount = 0;
         var ret = '';
@@ -73,7 +92,6 @@ Game.prototype = {
         } else {
             ret = 'ingame_03_0' + Math.ceil(Math.random()*6);
         }
-        console.log(ret);
         return ret;
     },
     update: function () {
@@ -246,5 +264,9 @@ Game.prototype = {
         this.starSprite.height = this.game.world.height;
 
         this.starSprite.filters = [this.filter];
+    },
+
+    shutdown: function() {
+        this.tempsound.stop();
     }
 };
