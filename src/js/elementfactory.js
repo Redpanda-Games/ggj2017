@@ -7,11 +7,13 @@ var ElementFactory = function (game) {
         var sprite = _game.add.sprite(spawn.x, spawn.y, 'ship_01');
         sprite.anchor.setTo(0.5, 0.5);
         sprite.scale.setTo(0.5, 0.5);
-        sprite.animations.add('fly', [0,1,2,3,4,5,6,7], 12);
-        sprite.animations.add('dock', [8,9,10,11,12,13,14,15,16,17,18], 12);
+        sprite.animations.add('fly', [0, 1, 2, 3, 4, 5, 6, 7], 12);
+        sprite.animations.add('dock', [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], 12);
+        sprite.animations.add('attack', [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33], 24);
+        sprite.animations.add('death-push', [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48], 12); // 15
         sprite.animations.play('fly', null, true);
         _game.physics.arcade.enable(sprite);
-        var radius = sprite.width/2;
+        var radius = sprite.width / 2;
         sprite.body.setCircle(radius, radius, radius);
         sprite.speedMultiplier = 1;
         sprite.docked = false;
@@ -54,21 +56,27 @@ var ElementFactory = function (game) {
                 ship.docked = true;
                 ship.dockedTime = new Date();
                 ship.drainLife = true;
-                if(ship.speedMultiplier > 2) {
-                    planet.health -= 1;
+                if (ship.speedMultiplier > 2) {
+                    planet.health--;
                 }
-                if(ship.speedMultiplier > 1) {
+                if (ship.speedMultiplier > 1) {
                     ship.kill();
                 }
                 ship.speedMultiplier = 0;
                 ship.drainInterval = setInterval(function () {
                     ship.drainLife = ship.docked;
+                    ship.animations.play('attack', null, false);
                 }, 2000);
             }
             if (bullet !== null && ship !== null) {
-                if(bullet.multiplier < 0 && ship.docked){
+                if (bullet.multiplier < 0 && ship.docked) {
+                    clearInterval(ship.drainInterval);
                     ship.speedMultiplier = 1;
                     ship.docked = false;
+                    ship.animations.play('death-push', null, false);
+                    ship.animations.currentAnim.onComplete.add(function () {
+                        ship.kill();
+                    });
                 }
                 ship.addMultiplier(bullet.multiplier);
                 bullet.destroy();
@@ -82,7 +90,7 @@ var ElementFactory = function (game) {
         sprite.anchor.setTo(0.5, 0.5);
         _game.physics.arcade.enable(sprite);
         sprite.body.setCircle(sprite.width / 2);
-        sprite.animations.add('idle', [0,1,2,3,4,5,6,7,8,9,10,11], 6);
+        sprite.animations.add('idle', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 6);
         sprite.animations.play('idle', null, true);
         sprite.body.immovable = true;
         sprite.health = 100;
@@ -91,7 +99,7 @@ var ElementFactory = function (game) {
         sprite.lastRegen = 0;
         sprite.cooldown = 3 * 1000;
         sprite.regenerate = function () {
-            if(new Date() - this.lastRegen > this.cooldown) {
+            if (new Date() - this.lastRegen > this.cooldown) {
                 this.energy++;
             }
         };
@@ -116,7 +124,7 @@ var ElementFactory = function (game) {
         sprite.scale.setTo(0.4, 0.4);
         sprite.planet = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_planet');
         sprite.planet.anchor.setTo(0.5, 0.5);
-        var planetScaleFactor = (_game.planet.width/_game.world.width)/(sprite.planet.width/sprite.width);
+        var planetScaleFactor = (_game.planet.width / _game.world.width) / (sprite.planet.width / sprite.width);
         sprite.planet.scale.setTo(planetScaleFactor, planetScaleFactor);
         sprite.scanner = _game.add.sprite(sprite.position.x - sprite.width / 2, sprite.position.y - sprite.height / 2, 'radar_scanner');
         sprite.scanner.anchor.setTo(0.5, 0.5);
@@ -166,13 +174,16 @@ var ElementFactory = function (game) {
         var bullet = _game.add.sprite(_game.world.centerX, _game.world.centerY, 'bullet_' + type);
         bullet.anchor.setTo(0.5, 0.5);
         bullet.scale.setTo(0.25, 0.25);
-        bullet.animations.add('loop',[0,1,2],12);
+        bullet.animations.add('loop', [0, 1, 2], 12);
         _game.physics.arcade.enable(bullet);
-        var radius = bullet.width/2;
+        var radius = bullet.width / 2;
         bullet.body.setCircle(radius, radius, radius);
         bullet.isbullet = true;
         bullet.multiplier = type == 'inverse' ? -1 : 2;
-        bullet.bulletangle = _game.physics.arcade.angleBetween({x: _game.world.centerX, y: _game.world.centerY}, {x: _game.input.activePointer.x, y: _game.input.activePointer.y}) * (180 / Math.PI);
+        bullet.bulletangle = _game.physics.arcade.angleBetween({
+                x: _game.world.centerX,
+                y: _game.world.centerY
+            }, {x: _game.input.activePointer.x, y: _game.input.activePointer.y}) * (180 / Math.PI);
         bullet.moveForward = function (angle) {
             if (_game.physics.arcade.distanceToXY(this.position, _game.world.centerX, _game.world.centerY) > _game.world.width * 2) {
                 this.destroy();
