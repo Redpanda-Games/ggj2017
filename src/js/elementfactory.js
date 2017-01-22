@@ -212,16 +212,13 @@ var ElementFactory = function (game) {
         var bullet = _game.add.sprite(_game.world.centerX, _game.world.centerY, 'bullet_' + type);
         bullet.anchor.setTo(0.5, 0.5);
         bullet.scale.setTo(0.25, 0.25);
-        bullet.animations.add('loop', [0, 1, 2], 12);
+        bullet.animations.add('loop', [0, 1, 2], 9);
         _game.physics.arcade.enable(bullet);
         var radius = bullet.width / 2;
         bullet.body.setCircle(radius, radius, radius);
         bullet.isbullet = true;
         bullet.multiplier = type == 'inverse' ? -1 : 2;
-        bullet.bulletangle = _game.physics.arcade.angleBetween({
-                x: _game.world.centerX,
-                y: _game.world.centerY
-            }, {x: _game.input.activePointer.x, y: _game.input.activePointer.y}) * (180 / Math.PI);
+        bullet.bulletangle = _game.physics.arcade.angleBetween({x: _game.world.centerX, y: _game.world.centerY}, game.input.activePointer) * (180 / Math.PI);
         bullet.moveForward = function (angle) {
             if (_game.physics.arcade.distanceToXY(this.position, _game.world.centerX, _game.world.centerY) > _game.world.width * 2) {
                 this.destroy();
