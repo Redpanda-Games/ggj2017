@@ -115,6 +115,8 @@ var ElementFactory = function (game) {
     this.factorHud = function () {
         var hud = _game.add.sprite(40, _game.world.height - 10, 'avatar');
         hud.anchor.setTo(0, 1);
+        hud.animations.add('idle',[0,1,2,3], 3);
+        hud.animations.play('idle', null, true);
         hud.lifeSprite = _game.add.sprite(40, _game.world.height - 10, 'lifebar');
         hud.lifeSprite.anchor.setTo(0, 1);
         hud.energieSprite = _game.add.sprite(40, _game.world.height - 10, 'energie');
