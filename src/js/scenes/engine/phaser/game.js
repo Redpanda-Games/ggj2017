@@ -41,31 +41,29 @@ Game.prototype = {
         }, this);
         this.newSound();
     },
-    newSound: function() {
+    newSound: function () {
         this.gameSound = this.game.add.audio(this.selectSound());
-        this.game.sound.setDecodedCallback([this.gameSound],function(){
-            console.log('decode');
+        this.game.sound.setDecodedCallback([this.gameSound], function () {
             this.gameSound.play();
-            this.gameSound.onStop.add(function(){
-                console.log('soundstop');
+            this.gameSound.onStop.add(function () {
                 this.newSound();
             }, this);
-        },this);
+        }, this);
     },
-    selectSound: function(){
+    selectSound: function () {
         var enemConnectedCount = 0;
         var ret = '';
         for (var j = 0; j < this.enemies.length; j++) {
-            if (this.enemies[j].docked){
+            if (this.enemies[j].docked) {
                 enemConnectedCount++;
             }
         }
-        if(enemConnectedCount<=1) {
-            ret = 'ingame_01_0' + Math.ceil(Math.random()*6);
+        if (enemConnectedCount <= 1) {
+            ret = 'ingame_01_0' + Math.ceil(Math.random() * 6);
         } else if (enemConnectedCount <= 5) {
-            ret = 'ingame_02_0' + Math.ceil(Math.random()*6);
+            ret = 'ingame_02_0' + Math.ceil(Math.random() * 6);
         } else {
-            ret = 'ingame_03_0' + Math.ceil(Math.random()*6);
+            ret = 'ingame_03_0' + Math.ceil(Math.random() * 6);
         }
         return ret;
     },

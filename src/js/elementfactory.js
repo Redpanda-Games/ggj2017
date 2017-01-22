@@ -115,7 +115,7 @@ var ElementFactory = function (game) {
     this.factorHud = function () {
         var hud = _game.add.sprite(40, _game.world.height - 10, 'avatar');
         hud.anchor.setTo(0, 1);
-        hud.animations.add('idle',[0,1,2,3], 3);
+        hud.animations.add('idle', [0, 1, 2, 3], 3);
         hud.animations.play('idle', null, true);
         hud.lifeSprite = _game.add.sprite(40, _game.world.height - 10, 'lifebar');
         hud.lifeSprite.anchor.setTo(0, 1);
@@ -220,7 +220,10 @@ var ElementFactory = function (game) {
         bullet.body.setCircle(radius, radius, radius);
         bullet.isbullet = true;
         bullet.multiplier = type == 'inverse' ? -1 : 2;
-        bullet.bulletangle = _game.physics.arcade.angleBetween({x: _game.world.centerX, y: _game.world.centerY}, game.input.activePointer) * (180 / Math.PI);
+        bullet.bulletangle = _game.physics.arcade.angleBetween({
+                x: _game.world.centerX,
+                y: _game.world.centerY
+            }, game.input.activePointer) * (180 / Math.PI);
         bullet.moveForward = function (angle) {
             if (_game.physics.arcade.distanceToXY(this.position, _game.world.centerX, _game.world.centerY) > _game.world.width * 2) {
                 this.destroy();
