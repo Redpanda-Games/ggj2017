@@ -36,10 +36,12 @@ Game.prototype = {
         this.cooldown = 0.25 * 1000; // seconds
         this.lastship = 0;
         this.shipCooldown = 150;
+        this.game.onPause.add(function () {
+            this.game.state.start('Menu');
+        }, this);
         this.newSound();
     },
     newSound: function() {
-        console.log('new sound');
         this.gameSound = this.game.add.audio(this.selectSound());
         this.game.sound.setDecodedCallback([this.gameSound],function(){
             console.log('decode');
