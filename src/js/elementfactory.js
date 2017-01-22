@@ -122,13 +122,13 @@ var ElementFactory = function (game) {
         hud.energieSprite = _game.add.sprite(40, _game.world.height - 10, 'energie');
         hud.energieSprite.anchor.setTo(0, 1);
         var heightOld = hud.height;
-        hud.height = _game.world.height * 0.4;
+        hud.height = _game.world.height * 0.3;
         hud.width = hud.width * (hud.height / heightOld);
 
-        hud.lifeSprite.height = _game.world.height * 0.4;
+        hud.lifeSprite.height = _game.world.height * 0.3;
         hud.lifeSprite.width = hud.lifeSprite.width * (hud.lifeSprite.height / heightOld);
 
-        hud.energieSprite.height = _game.world.height * 0.4;
+        hud.energieSprite.height = _game.world.height * 0.3;
         hud.energieSprite.width = hud.energieSprite.width * (hud.energieSprite.height / heightOld);
 
         hud.setLife = function (life) {
