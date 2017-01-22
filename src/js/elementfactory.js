@@ -51,10 +51,16 @@ var ElementFactory = function (game) {
             bullet = sprite2.isbullet !== undefined ? sprite2 : bullet;
             if (planet !== null && ship !== null && !ship.docked) {
                 ship.animations.play('dock', null, false);
-                ship.speedMultiplier = 0;
                 ship.docked = true;
                 ship.dockedTime = new Date();
                 ship.drainLife = true;
+                if(ship.speedMultiplier > 2) {
+                    planet.health -= 1;
+                }
+                if(ship.speedMultiplier > 1) {
+                    ship.kill();
+                }
+                ship.speedMultiplier = 0;
                 ship.drainInterval = setInterval(function () {
                     ship.drainLife = ship.docked;
                 }, 2000);

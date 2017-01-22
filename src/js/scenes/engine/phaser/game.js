@@ -27,7 +27,7 @@ Game.prototype = {
         this.enemies = [];
         this.bullets = [];
         this.maxEnemyCount = 0;
-        this.baseEnemySpeed = 250;
+        this.baseEnemySpeed = 300;
         this.enemySpeed = 0;
         this.baseTime = this.game.time.totalElapsedSeconds();
         this.highscore = this.elementFactory.factorHighscore();
@@ -36,8 +36,8 @@ Game.prototype = {
     },
     update: function () {
         var timegone = (this.game.time.totalElapsedSeconds() - this.baseTime) < 0 ? 0 : (this.game.time.totalElapsedSeconds() - this.baseTime);
-        this.maxEnemyCount = 1 + Math.round(timegone / 10);
-        this.enemySpeed = this.baseEnemySpeed + timegone / 10;
+        this.maxEnemyCount = Math.min(1 + Math.round(timegone / 10), 50);
+        this.enemySpeed = this.baseEnemySpeed + timegone;
         this.generateShipIfNeeded();
         this.fireBullet();
         this.updateEnemies();
@@ -67,6 +67,7 @@ Game.prototype = {
         if (this.game.planet.health <= 0) {
             this.game.state.start('Menu');
         }
+        this.healthBar.update(this.game.planet.health);
         for (var i = 0; i < this.enemies.length; i++) {
             if (this.enemies[i].drainLife) {
                 this.enemies[i].drainLife = false;
