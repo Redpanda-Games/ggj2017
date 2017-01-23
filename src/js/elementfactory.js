@@ -36,7 +36,7 @@ var ElementFactory = function (game) {
             }
         };
         sprite.kill = function () {
-            _game.highscore += 8;
+            _game.highscore += 5;
             this.destroy();
         };
         sprite.addMultiplier = function (multiplier) {
