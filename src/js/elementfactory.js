@@ -20,6 +20,8 @@ var ElementFactory = function (game) {
         sprite.docked = false;
         sprite.isShip = true;
         sprite.dockedTime = 0;
+        sprite.deathSound = _game.add.audio('alien_explode');
+        sprite.dockSound = _game.add.audio('alien_dock');
         sprite.moveForward = function (speed) {
             if (!this.docked) {
                 if (_game.physics.arcade.distanceToXY(this.position, _game.world.centerX, _game.world.centerY) > _game.world.width * 2) {
@@ -53,6 +55,7 @@ var ElementFactory = function (game) {
             bullet = sprite1.isbullet !== undefined ? sprite1 : bullet;
             bullet = sprite2.isbullet !== undefined ? sprite2 : bullet;
             if (planet !== null && ship !== null && !ship.docked) {
+                ship.dockSound.play();
                 ship.animations.play('dock', null, false);
                 ship.docked = true;
                 ship.dockedTime = new Date();
@@ -66,6 +69,7 @@ var ElementFactory = function (game) {
                 }
                 if (ship.speedMultiplier > 1) {
                     clearInterval(ship.drainInterval);
+                    sprite.deathSound.play();
                     ship.animations.play('death-pull', null, false);
                     ship.animations.currentAnim.onComplete.add(function () {
                         ship.kill();
@@ -103,8 +107,10 @@ var ElementFactory = function (game) {
         sprite.isPlanet = true;
         sprite.lastRegen = 0;
         sprite.cooldown = 1000;
+        sprite.regenSound = _game.add.audio('load_energy');
         sprite.regenerate = function () {
             if (new Date() - this.lastRegen > this.cooldown && this.energy < 50) {
+                // sprite.regenSound.play(); // sound is too long
                 this.lastRegen = new Date();
                 this.energy++;
             }
@@ -218,7 +224,6 @@ var ElementFactory = function (game) {
         } else {
             bullet.btnSound = _game.add.audio('gravity_minus');
         }
-        ;
         _game.sound.setDecodedCallback([bullet.btnSound], function () {
         }, this);
         bullet.btnSound.play();
