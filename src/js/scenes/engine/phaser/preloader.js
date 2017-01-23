@@ -20,42 +20,42 @@ Preloader.prototype = {
         this.load.image('credit_button', 'src/img/gravcore-startscreen-team.png');
 
         //Phase 1 Normale Sounds
-        this.load.audio('ingame_01_00', ['src/audio/MUSIK_P1_01.mp3', 'src/audio/MUSIK_P1_01.ogg']);
-        this.load.audio('ingame_01_01', ['src/audio/MUSIK_P1_02.mp3', 'src/audio/MUSIK_P1_02.ogg']);
-        this.load.audio('ingame_01_02', ['src/audio/MUSIK_P1_03.mp3', 'src/audio/MUSIK_P1_03.ogg']);
-        this.load.audio('ingame_01_03', ['src/audio/MUSIK_P1_04.mp3', 'src/audio/MUSIK_P1_04.ogg']);
-        this.load.audio('ingame_01_04', ['src/audio/MUSIK_P1_05.mp3', 'src/audio/MUSIK_P1_05.ogg']);
-        this.load.audio('ingame_01_05', ['src/audio/MUSIK_P1_06.mp3', 'src/audio/MUSIK_P1_06.ogg']);
-        this.load.audio('ingame_01_06', ['src/audio/MUSIK_P1_07.mp3', 'src/audio/MUSIK_P1_07.ogg']);
+        this.load.audio('ingame_01_00', ['src/audio/ingame_01_00.mp3', 'src/audio/ingame_01_00.ogg']);
+        this.load.audio('ingame_01_01', ['src/audio/ingame_01_01.mp3', 'src/audio/ingame_01_01.ogg']);
+        this.load.audio('ingame_01_02', ['src/audio/ingame_01_02.mp3', 'src/audio/ingame_01_02.ogg']);
+        this.load.audio('ingame_01_03', ['src/audio/ingame_01_03.mp3', 'src/audio/ingame_01_03.ogg']);
+        this.load.audio('ingame_01_04', ['src/audio/ingame_01_04.mp3', 'src/audio/ingame_01_04.ogg']);
+        this.load.audio('ingame_01_05', ['src/audio/ingame_01_05.mp3', 'src/audio/ingame_01_05.ogg']);
+        this.load.audio('ingame_01_06', ['src/audio/ingame_01_06.mp3', 'src/audio/ingame_01_06.ogg']);
 
         //Phase 2 Wenn die Schiffe angedockt sind
-        this.load.audio('ingame_02_00', ['src/audio/MUSIK_P2_01.mp3', 'src/audio/MUSIK_P2_01.ogg']);
-        this.load.audio('ingame_02_01', ['src/audio/MUSIK_P2_02.mp3', 'src/audio/MUSIK_P2_02.ogg']);
-        this.load.audio('ingame_02_02', ['src/audio/MUSIK_P2_03.mp3', 'src/audio/MUSIK_P2_03.ogg']);
-        this.load.audio('ingame_02_03', ['src/audio/MUSIK_P2_04.mp3', 'src/audio/MUSIK_P2_04.ogg']);
-        this.load.audio('ingame_02_04', ['src/audio/MUSIK_P2_05.mp3', 'src/audio/MUSIK_P2_05.ogg']);
-        this.load.audio('ingame_02_05', ['src/audio/MUSIK_P2_06.mp3', 'src/audio/MUSIK_P2_06.ogg']);
-        this.load.audio('ingame_02_06', ['src/audio/MUSIK_P2_07.mp3', 'src/audio/MUSIK_P2_07.ogg']);
+        this.load.audio('ingame_02_00', ['src/audio/ingame_02_00.mp3', 'src/audio/ingame_02_00.ogg']);
+        this.load.audio('ingame_02_01', ['src/audio/ingame_02_01.mp3', 'src/audio/ingame_02_01.ogg']);
+        this.load.audio('ingame_02_02', ['src/audio/ingame_02_02.mp3', 'src/audio/ingame_02_02.ogg']);
+        this.load.audio('ingame_02_03', ['src/audio/ingame_02_03.mp3', 'src/audio/ingame_02_03.ogg']);
+        this.load.audio('ingame_02_04', ['src/audio/ingame_02_04.mp3', 'src/audio/ingame_02_04.ogg']);
+        this.load.audio('ingame_02_05', ['src/audio/ingame_02_05.mp3', 'src/audio/ingame_02_05.ogg']);
+        this.load.audio('ingame_02_06', ['src/audio/ingame_02_06.mp3', 'src/audio/ingame_02_06.ogg']);
 
         //Phase 3
-        this.load.audio('ingame_03_00', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/MUSIK_P3_01.ogg']);
-        this.load.audio('ingame_03_01', ['src/audio/MUSIK_P3_02.mp3', 'src/audio/MUSIK_P3_02.ogg']);
-        this.load.audio('ingame_03_02', ['src/audio/MUSIK_P3_03.mp3', 'src/audio/MUSIK_P3_03.ogg']);
-        this.load.audio('ingame_03_03', ['src/audio/MUSIK_P3_04.mp3', 'src/audio/MUSIK_P3_04.ogg']);
-        this.load.audio('ingame_03_04', ['src/audio/MUSIK_P3_05.mp3', 'src/audio/MUSIK_P3_05.ogg']);
-        this.load.audio('ingame_03_05', ['src/audio/MUSIK_P3_06.mp3', 'src/audio/MUSIK_P3_06.ogg']);
-        this.load.audio('ingame_03_06', ['src/audio/MUSIK_P3_07.mp3', 'src/audio/MUSIK_P3_07.ogg']);
+        this.load.audio('ingame_03_00', ['src/audio/ingame_03_00.mp3', 'src/audio/ingame_03_00.ogg']);
+        this.load.audio('ingame_03_01', ['src/audio/ingame_03_01.mp3', 'src/audio/ingame_03_01.ogg']);
+        this.load.audio('ingame_03_02', ['src/audio/ingame_03_02.mp3', 'src/audio/ingame_03_02.ogg']);
+        this.load.audio('ingame_03_03', ['src/audio/ingame_03_03.mp3', 'src/audio/ingame_03_03.ogg']);
+        this.load.audio('ingame_03_04', ['src/audio/ingame_03_04.mp3', 'src/audio/ingame_03_04.ogg']);
+        this.load.audio('ingame_03_05', ['src/audio/ingame_03_05.mp3', 'src/audio/ingame_03_05.ogg']);
+        this.load.audio('ingame_03_06', ['src/audio/ingame_03_06.mp3', 'src/audio/ingame_03_06.ogg']);
 
         //Sound-Design
-        this.load.audio('alien_dock', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_alien_dock.mp3']);
-        this.load.audio('alien_suck', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_aliewn_planet_sucker.mp3']);
-        this.load.audio('alien_explode', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_Explosion.mp3']);
-        this.load.audio('planet_exlode', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_Explosion_planet']);
-        this.load.audio('gravity_minus', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_gravity_minus.mp3']);
-        this.load.audio('gravity_plus', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_gravity_plus.mp3']);
-        this.load.audio('healtbar', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_healthbar.mp3']);
-        this.load.audio('load_energy', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_load_energy.mp3']);
-        this.load.audio('menue_button', ['src/audio/MUSIK_P3_01.mp3', 'src/audio/SD_menue_button.mp3']);
+        this.load.audio('alien_dock', ['src/audio/fx_alien_dock.mp3', 'src/audio/fx_alien_dock.ogg']);
+        this.load.audio('alien_suck', ['src/audio/fx_alien_suck.mp3', 'src/audio/fx_alien_suck.ogg']);
+        this.load.audio('alien_explode', ['src/audio/fx_alien_explode.mp3', 'src/audio/fx_alien_explode.ogg']);
+        this.load.audio('planet_exlode', ['src/audio/fx_planet_exlode.mp3', 'src/audio/fx_planet_exlode.ogg']);
+        this.load.audio('gravity_minus', ['src/audio/fx_gravity_minus.mp3', 'src/audio/fx_gravity_minus.ogg']);
+        this.load.audio('gravity_plus', ['src/audio/fx_gravity_plus.mp3', 'src/audio/fx_gravity_plus.ogg']);
+        this.load.audio('healtbar', ['src/audio/fx_healthbar.mp3', 'src/audio/fx_healthbar.ogg']);
+        this.load.audio('load_energy', ['src/audio/fx_load_energy.mp3', 'src/audio/fx_load_energy.ogg']);
+        this.load.audio('menu_button', ['src/audio/fx_menu_button.mp3', 'src/audio/fx_menu_button.ogg']);
 
         this.load.spritesheet('planet', 'src/img/planet.png', 250, 250);
         this.load.spritesheet('ship_01', 'src/img/ship_01.png', 250, 250);
