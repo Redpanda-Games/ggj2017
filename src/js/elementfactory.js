@@ -69,7 +69,7 @@ var ElementFactory = function (game) {
                 }
                 if (ship.speedMultiplier > 1) {
                     clearInterval(ship.drainInterval);
-                    sprite.deathSound.play();
+                    // sprite.deathSound.play(); // too long
                     ship.animations.play('death-pull', null, false);
                     ship.animations.currentAnim.onComplete.add(function () {
                         ship.kill();
