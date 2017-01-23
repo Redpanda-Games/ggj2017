@@ -73,7 +73,7 @@ Menu.prototype = {
         }
     },
     shutdown: function () {
-        for(var i = 0; i < this.buttons.length; i++) {
+        for (var i = 0; i < this.buttons.length; i++) {
             this.buttons[i].btnSound.stop();
         }
     }

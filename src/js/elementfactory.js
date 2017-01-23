@@ -213,13 +213,14 @@ var ElementFactory = function (game) {
     this.factorBullet = function (type) {
         var bullet = _game.add.sprite(_game.world.centerX, _game.world.centerY, 'bullet_' + type);
         bullet.btnSound = null;
-        if(type == 'increase') {
+        if (type == 'increase') {
             bullet.btnSound = _game.add.audio('gravity_plus');
         } else {
             bullet.btnSound = _game.add.audio('gravity_minus');
-        };
-        _game.sound.setDecodedCallback([bullet.btnSound], function(){
-        },this);
+        }
+        ;
+        _game.sound.setDecodedCallback([bullet.btnSound], function () {
+        }, this);
         bullet.btnSound.play();
         bullet.anchor.setTo(0.5, 0.5);
         bullet.scale.setTo(0.4, 0.4);
