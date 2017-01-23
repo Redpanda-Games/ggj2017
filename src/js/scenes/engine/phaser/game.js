@@ -43,54 +43,40 @@ Game.prototype = {
         this.total = 0;
         this.timer = this.game.time.create(false);
         this.updateSound();
-
         this.prepareSound();
         this.newSound();
     },
-    newSound: function() {
-        console.log('new sound');
-            console.log('decode');
-            this.tempsound = this.prepareSound();
-            this.tempsound.play();
-            this.prepareSound();
-            console.log('sound ready to play');
-            this.tempsound.onStop.add(function(){
-                console.log('soundstop');
-            }, this);
-
+    newSound: function () {
+        this.tempsound = this.prepareSound();
+        this.tempsound.play();
+        this.prepareSound();
     },
-
-    prepareSound: function() {
+    prepareSound: function () {
 
         this.gameSound = this.game.add.audio(this.selectSound());
-        this.game.sound.setDecodedCallback([this.gameSound], function(){
-            console.log('sound get decoded');
-        },this);
+        this.game.sound.setDecodedCallback([this.gameSound], function () {
+        }, this);
         return this.gameSound;
 
     },
-
-    updateSound: function() {
+    updateSound: function () {
         this.timer.loop(7111, this.newSound, this);
-        console.log('test');
-        //this.timer.loop(7111, function(){console.log('loop')}, this);
         this.timer.start();
     },
-
-    selectSound: function(){
+    selectSound: function () {
         var enemConnectedCount = 0;
         var ret = '';
         for (var j = 0; j < this.enemies.length; j++) {
-            if (this.enemies[j].docked){
+            if (this.enemies[j].docked) {
                 enemConnectedCount++;
             }
         }
-        if(enemConnectedCount<=1) {
-            ret = 'ingame_01_0' + Math.ceil(Math.random()*6);
+        if (enemConnectedCount <= 1) {
+            ret = 'ingame_01_0' + Math.ceil(Math.random() * 6);
         } else if (enemConnectedCount <= 5) {
-            ret = 'ingame_02_0' + Math.ceil(Math.random()*6);
+            ret = 'ingame_02_0' + Math.ceil(Math.random() * 6);
         } else {
-            ret = 'ingame_03_0' + Math.ceil(Math.random()*6);
+            ret = 'ingame_03_0' + Math.ceil(Math.random() * 6);
         }
         return ret;
     },
@@ -265,8 +251,7 @@ Game.prototype = {
 
         this.starSprite.filters = [this.filter];
     },
-
-    shutdown: function() {
+    shutdown: function () {
         this.tempsound.stop();
     }
 };

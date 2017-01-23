@@ -1,7 +1,9 @@
 var Menu = function (game) {
+    this.buttons = [];
 };
 Menu.prototype = {
     create: function () {
+        this.buttons = [];
         this.background = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'background');
         this.background.anchor.setTo(0.5, 0.5);
         this.background.width = this.game.world.width;
@@ -28,9 +30,9 @@ Menu.prototype = {
                     button.height = this.game.world.height * 0.9;
                     button.width = button.width * (button.height / heightOld);
                     button.anchor.setTo(0, 1);
-                    button.btnSound = this.game.add.audio('menue_button');
-                    that.game.sound.setDecodedCallback([button.btnSound], function(){
-                    },this);
+                    button.btnSound = this.game.add.audio('menu_button');
+                    that.game.sound.setDecodedCallback([button.btnSound], function () {
+                    }, this);
                     button.animations.add('hover', [0, 1, 2], 6);
                     button.animations.add('out', [0, 1, 2], 3);
                     button.inputEnabled = true;
@@ -54,6 +56,7 @@ Menu.prototype = {
                     }, this);
 
                     button.anchor.setTo(0.5, 0.5);
+                    this.buttons.push(button);
                 } else {
                     var text = this.game.add.text(that.game.world.centerX, that.game.world.centerY, ent.title, style);
                     text.inputEnabled = true;
@@ -67,6 +70,11 @@ Menu.prototype = {
                     text.anchor.setTo(0.5, 0.5);
                 }
             }
+        }
+    },
+    shutdown: function () {
+        for(var i = 0; i < this.buttons.length; i++) {
+            this.buttons[i].btnSound.stop();
         }
     }
 };
