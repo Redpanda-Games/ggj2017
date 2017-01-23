@@ -18,6 +18,8 @@ Preloader.prototype = {
 
         this.load.image('menu_logo', 'src/img/gravcore-startscreen-logo.png');
         this.load.image('credit_button', 'src/img/gravcore-startscreen-team.png');
+        this.load.image('help_button', 'src/img/fragenzeichen.png');
+        this.load.image('help_overlay', 'src/img/howto.png');
 
         //Phase 1 Normale Sounds
         this.load.audio('ingame_01_00', ['src/audio/ingame_01_00.mp3', 'src/audio/ingame_01_00.ogg']);

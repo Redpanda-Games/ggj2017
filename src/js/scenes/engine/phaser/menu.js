@@ -18,6 +18,13 @@ Menu.prototype = {
         this.creditBtn.events.onInputDown.add(function () {
             that.game.state.start('Credit');
         }, this);
+        this.helpBtn = this.add.sprite(this.game.world.width - 40, 40, 'help_button');
+        this.helpBtn.anchor.setTo(1, 0);
+        this.helpBtn.width = this.helpBtn.width*0.15;
+        this.helpBtn.height = this.helpBtn.height*0.15;
+        this.helpBtn.inputEnabled = true;
+        this.helpBtn.input.useHandCursor = true;
+
         var that = this;
         var style = {font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle"};
         var yPosition = 0;
@@ -71,6 +78,20 @@ Menu.prototype = {
                 }
             }
         }
+        this.helpOverlay = this.add.sprite(this.game.world.centerX, this.game.world.centerY, 'help_overlay');
+        this.helpOverlay.visible = false;
+        this.helpOverlay.anchor.setTo(0.5, 0.5);
+        var helpHeightOld = this.helpOverlay.height;
+        this.helpOverlay.height = this.game.world.height;
+        this.helpOverlay.width = this.helpOverlay.width * (this.helpOverlay.height / helpHeightOld);
+        this.helpBtn.events.onInputDown.add(function () {
+            this.helpOverlay.visible = !this.helpOverlay.visible;
+        }, this);
+        this.helpOverlay.inputEnabled = true;
+        this.helpOverlay.input.useHandCursor = true;
+        this.helpOverlay.events.onInputDown.add(function () {
+            this.helpOverlay.visible = false;
+        }, this);
     },
     shutdown: function () {
         for (var i = 0; i < this.buttons.length; i++) {

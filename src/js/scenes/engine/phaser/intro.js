@@ -6,9 +6,10 @@ Intro.prototype = {
     create: function () {
         this.video = null;
         this.video = this.game.add.video('intro');
+        var oHeight = this.video.height;
+        this.video.addToWorld(this.game.world.centerX, this.game.world.centerY, 0.5, 0.5, this.game.world.height/this.video.height, this.game.world.height/this.video.height);
         this.video.onComplete.addOnce(this.videoEnd, this);
         this.video.play();
-        this.video.addToWorld((this.game.world.width - this.video.width) / 2, null, 0, 0);
     },
     update: function () {
         var that = this;
