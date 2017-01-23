@@ -1,7 +1,6 @@
 var Credit = function (game) {
     this.background = null;
     this.text = null;
-    this.keys = {};
 };
 Credit.prototype = {
     create: function () {
@@ -9,15 +8,17 @@ Credit.prototype = {
         this.background.anchor.setTo(0.5, 0.5);
         this.background.width = this.game.world.width;
         this.background.height = this.game.world.height;
-
-        this.game.input.keyboard.addKeyCapture([Phaser.Keyboard.ESC]);
-        this.keys.esc = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
     },
     update: function () {
-        if (this.keys.esc.isDown || this.game.input.activePointer.isDown) {
-            this.game.state.clearCurrentState();
+        var that = this;
+        if(this.game.input.activePointer.isDown) {
             this.game.state.start('Menu');
-            return true;
         }
+        this.game.input.keyboard.onPressCallback = function () {
+            that.game.state.start('Menu');
+        }
+    },
+    shutdown: function () {
+        this.game.input.keyboard.onPressCallback = null;
     }
 };
